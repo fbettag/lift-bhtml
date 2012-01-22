@@ -363,3 +363,61 @@ object InetUtils {
 }
 
 
+/**
+ * Extend a snippet and use val <b>month</b> which holds a [[org.joda.time.DateTime]] of the param passed as <i>month</i> (e.g. ?month=2012-01)
+ *
+ * Falls back to current Month
+ */
+trait MonthSnippet {
+
+	val month = S.param("month") match {
+		case Full(a: String) =>
+			if (a.matches("[0-9]{1,2}"))
+				try {
+					DateTimeFormat.forPattern("yyyy-MM-dd").parseDateTime((new DateTime).toString("yyyy-%02d-01".format(a)))
+				} catch {
+					case _ => new DateTime
+				}
+			else
+				try {
+					DateTimeFormat.forPattern("yyyy-MM-dd").parseDateTime(a + "-01")
+				} catch {
+					case _ => new DateTime
+				}
+		case _ => new DateTime
+	}
+}
+
+
+import java.lang.reflect._
+import java.io._
+
+/**
+ * Extend a snippet and use method <b>shellExec</b> to execute a command and get the output
+ *
+ * Method workDir provides easy access to a Property <b>script.dir</b> to be set in Liftweb's properties-file.
+ */
+trait ExecSnippet {
+
+	def workDir = Props.get("script.dir") openOr "/tmp/i.didnt.configure.jack"
+
+	def shellExec(cmds: List[String]): List[String] = {
+		val process = Runtime.getRuntime.exec(cmds.toArray)
+		val resultBuffer = new BufferedReader(new InputStreamReader(process.getInputStream))
+		var retList = List[String]()
+		var line: String = null
+
+		do {
+			line = resultBuffer.readLine
+			if (line != null) {
+				retList = line :: retList
+			}
+		} while (line != null)
+
+		process.waitFor
+		resultBuffer.close
+		retList.reverse
+	}
+}
+
+
