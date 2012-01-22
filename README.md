@@ -1,9 +1,7 @@
 BHtml - Bettag Html Package for Liftweb
 ==========
 
-It is a collection of wrapper-libraries build around Liftweb. Check the [http://fbettag.github.com/lift-bhtml/#ag.bett.lift.bhtml.package](API Docs) for more.
-
-Sample Project is in the works!
+It is a collection of wrapper-libraries build around Liftweb. Check the [API Docs](http://fbettag.github.com/lift-bhtml/latest/api/#ag.bett.lift.bhtml.package) for more.
 
 
 ## How to use
