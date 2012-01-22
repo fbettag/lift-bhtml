@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>ag.bett.lift.bhtml.MappedNullableInt</title>
+          <title>ag.bett.lift.bhtml.MappedCIDR</title>
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link type="text/css" media="screen" rel="stylesheet" href="../../../../lib/template.css" />
@@ -16,22 +16,22 @@
       <div id="definition">
         <img src="../../../../lib/class_big.png" />
         <p id="owner"><a name="ag" class="extype" href="../../../package.html">ag</a>.<a name="ag.bett" class="extype" href="../../package.html">bett</a>.<a name="ag.bett.lift" class="extype" href="../package.html">lift</a>.<a name="ag.bett.lift.bhtml" class="extype" href="package.html">bhtml</a></p>
-        <h1>MappedNullableInt</h1>
+        <h1>MappedCIDR</h1>
       </div>
 
       <h4 class="signature" id="signature">
       <span class="kind">class</span>
       <span class="symbol"> 
-        <span class="name">MappedNullableInt</span>
-        <span class="tparams">[<span name="T">T &lt;: <span name="net.liftweb.mapper.Mapper" class="extype">Mapper</span>[T]</span>]</span>
-        <span class="result"> extends <span name="net.liftweb.mapper.MappedNullableField" class="extype">MappedNullableField</span>[<span name="scala.Int" class="extype">Int</span>, T]</span>
+        <span class="name">MappedCIDR</span>
+        <span class="tparams">[<span name="A">A &lt;: <span name="net.liftweb.mapper.Mapper" class="extype">Mapper</span>[A]</span>]</span>
+        <span class="result"> extends <span name="net.liftweb.mapper.MappedString" class="extype">MappedString</span>[A]</span>
       </span>
       </h4>
       
-          <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>Nullable MappedInt
+          <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>Mapper class for <a href="http://www.postgresql.org/docs/9.1/static/datatype-net-types.html">PostgreSQL CIDR Type</a>
 </p></div><dl class="attributes block"> <dt>Attributes</dt><dd>abstract </dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span name="net.liftweb.mapper.MappedNullableField" class="extype">MappedNullableField</span>[<span name="scala.Int" class="extype">Int</span>, T], <span name="net.liftweb.mapper.MappedField" class="extype">MappedField</span>[<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>], T], <span name="scala.Equals" class="extype">Equals</span>, <span name="net.liftweb.util.PSettableValueHolder" class="extype">PSettableValueHolder</span>[<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]], <span name="net.liftweb.util.PValueHolder" class="extype">PValueHolder</span>[<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]], <span name="net.liftweb.mapper.BaseOwnedMappedField" class="extype">BaseOwnedMappedField</span>[T], <span name="net.liftweb.mapper.BaseMappedField" class="extype">BaseMappedField</span>, <span name="net.liftweb.mapper.MixableMappedField" class="extype">MixableMappedField</span>, <span name="net.liftweb.util.BaseField" class="extype">BaseField</span>, <span name="net.liftweb.util.FieldContainer" class="extype">FieldContainer</span>, <span name="net.liftweb.util.SettableField" class="extype">SettableField</span>, <span name="net.liftweb.util.SettableValueHolder" class="extype">SettableValueHolder</span>, <span name="net.liftweb.util.Settable" class="extype">Settable</span>, <span name="net.liftweb.util.ReadableField" class="extype">ReadableField</span>, <span name="net.liftweb.util.ValueHolder" class="extype">ValueHolder</span>, <span name="net.liftweb.util.FieldIdentifier" class="extype">FieldIdentifier</span>, <span name="net.liftweb.util.Bindable" class="extype">Bindable</span>, <span name="net.liftweb.mapper.SelectableField" class="extype">SelectableField</span>, <span name="net.liftweb.mapper.TypedField" class="extype">TypedField</span>[<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]], AnyRef, <span name="scala.Any" class="extype">Any</span></div>
+          <div class="superTypes hiddenContent"><span name="net.liftweb.mapper.MappedString" class="extype">MappedString</span>[A], <span name="net.liftweb.mapper.HasApplyBoxString" class="extype">HasApplyBoxString</span>[A], <span name="net.liftweb.util.StringValidators" class="extype">StringValidators</span>, <span name="net.liftweb.mapper.MappedField" class="extype">MappedField</span>[String, A], <span name="scala.Equals" class="extype">Equals</span>, <span name="net.liftweb.util.PSettableValueHolder" class="extype">PSettableValueHolder</span>[String], <span name="net.liftweb.util.PValueHolder" class="extype">PValueHolder</span>[String], <span name="net.liftweb.mapper.BaseOwnedMappedField" class="extype">BaseOwnedMappedField</span>[A], <span name="net.liftweb.mapper.BaseMappedField" class="extype">BaseMappedField</span>, <span name="net.liftweb.mapper.MixableMappedField" class="extype">MixableMappedField</span>, <span name="net.liftweb.util.BaseField" class="extype">BaseField</span>, <span name="net.liftweb.util.FieldContainer" class="extype">FieldContainer</span>, <span name="net.liftweb.util.SettableField" class="extype">SettableField</span>, <span name="net.liftweb.util.SettableValueHolder" class="extype">SettableValueHolder</span>, <span name="net.liftweb.util.Settable" class="extype">Settable</span>, <span name="net.liftweb.util.ReadableField" class="extype">ReadableField</span>, <span name="net.liftweb.util.ValueHolder" class="extype">ValueHolder</span>, <span name="net.liftweb.util.FieldIdentifier" class="extype">FieldIdentifier</span>, <span name="net.liftweb.util.Bindable" class="extype">Bindable</span>, <span name="net.liftweb.mapper.SelectableField" class="extype">SelectableField</span>, <span name="net.liftweb.mapper.TypedField" class="extype">TypedField</span>[String], AnyRef, <span name="scala.Any" class="extype">Any</span></div>
         </div></div>
         
 
@@ -47,7 +47,7 @@
                 <span class="filtertype">Inherited</span>
                 <ol><li class="hideall out"><span>Hide All</span></li>
                 <li class="showall in"><span>Show all</span></li></ol>
-                <ol id="linearization"><li name="ag.bett.lift.bhtml.MappedNullableInt" class="in"><span>MappedNullableInt</span></li><li name="net.liftweb.mapper.MappedNullableField" class="in"><span>MappedNullableField</span></li><li name="net.liftweb.mapper.MappedField" class="in"><span>MappedField</span></li><li name="scala.Equals" class="in"><span>Equals</span></li><li name="net.liftweb.util.PSettableValueHolder" class="in"><span>PSettableValueHolder</span></li><li name="net.liftweb.util.PValueHolder" class="in"><span>PValueHolder</span></li><li name="net.liftweb.mapper.BaseOwnedMappedField" class="in"><span>BaseOwnedMappedField</span></li><li name="net.liftweb.mapper.BaseMappedField" class="in"><span>BaseMappedField</span></li><li name="net.liftweb.mapper.MixableMappedField" class="in"><span>MixableMappedField</span></li><li name="net.liftweb.util.BaseField" class="in"><span>BaseField</span></li><li name="net.liftweb.util.FieldContainer" class="in"><span>FieldContainer</span></li><li name="net.liftweb.util.SettableField" class="in"><span>SettableField</span></li><li name="net.liftweb.util.SettableValueHolder" class="in"><span>SettableValueHolder</span></li><li name="net.liftweb.util.Settable" class="in"><span>Settable</span></li><li name="net.liftweb.util.ReadableField" class="in"><span>ReadableField</span></li><li name="net.liftweb.util.ValueHolder" class="in"><span>ValueHolder</span></li><li name="net.liftweb.util.FieldIdentifier" class="in"><span>FieldIdentifier</span></li><li name="net.liftweb.util.Bindable" class="in"><span>Bindable</span></li><li name="net.liftweb.mapper.SelectableField" class="in"><span>SelectableField</span></li><li name="net.liftweb.mapper.TypedField" class="in"><span>TypedField</span></li><li name="scala.AnyRef" class="in"><span>AnyRef</span></li><li name="scala.Any" class="in"><span>Any</span></li></ol>
+                <ol id="linearization"><li name="ag.bett.lift.bhtml.MappedCIDR" class="in"><span>MappedCIDR</span></li><li name="net.liftweb.mapper.MappedString" class="in"><span>MappedString</span></li><li name="net.liftweb.mapper.HasApplyBoxString" class="in"><span>HasApplyBoxString</span></li><li name="net.liftweb.util.StringValidators" class="in"><span>StringValidators</span></li><li name="net.liftweb.mapper.MappedField" class="in"><span>MappedField</span></li><li name="scala.Equals" class="in"><span>Equals</span></li><li name="net.liftweb.util.PSettableValueHolder" class="in"><span>PSettableValueHolder</span></li><li name="net.liftweb.util.PValueHolder" class="in"><span>PValueHolder</span></li><li name="net.liftweb.mapper.BaseOwnedMappedField" class="in"><span>BaseOwnedMappedField</span></li><li name="net.liftweb.mapper.BaseMappedField" class="in"><span>BaseMappedField</span></li><li name="net.liftweb.mapper.MixableMappedField" class="in"><span>MixableMappedField</span></li><li name="net.liftweb.util.BaseField" class="in"><span>BaseField</span></li><li name="net.liftweb.util.FieldContainer" class="in"><span>FieldContainer</span></li><li name="net.liftweb.util.SettableField" class="in"><span>SettableField</span></li><li name="net.liftweb.util.SettableValueHolder" class="in"><span>SettableValueHolder</span></li><li name="net.liftweb.util.Settable" class="in"><span>Settable</span></li><li name="net.liftweb.util.ReadableField" class="in"><span>ReadableField</span></li><li name="net.liftweb.util.ValueHolder" class="in"><span>ValueHolder</span></li><li name="net.liftweb.util.FieldIdentifier" class="in"><span>FieldIdentifier</span></li><li name="net.liftweb.util.Bindable" class="in"><span>Bindable</span></li><li name="net.liftweb.mapper.SelectableField" class="in"><span>SelectableField</span></li><li name="net.liftweb.mapper.TypedField" class="in"><span>TypedField</span></li><li name="scala.AnyRef" class="in"><span>AnyRef</span></li><li name="scala.Any" class="in"><span>Any</span></li></ol>
               </div>
           <div id="visbl">
               <span class="filtertype">Visibility</span>
@@ -57,14 +57,14 @@
 
         <div class="members" id="constructors">
               <h3>Instance Constructors</h3>
-              <ol><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#this" data-isabs="false">
-      <a id="this:MappedNullableInt[T]"></a>
+              <ol><li visbl="pub" name="ag.bett.lift.bhtml.MappedCIDR#this" data-isabs="false">
+      <a id="this:MappedCIDR[A]"></a>
       <h4 class="signature">
       <span class="kind">new</span>
       <span class="symbol"> 
-        <span class="name">MappedNullableInt</span>
+        <span class="name">MappedCIDR</span>
         
-        <span class="params">(<span name="fieldOwner">fieldOwner: T</span>)</span>
+        <span class="params">(<span name="fieldOwner">fieldOwner: A</span>)</span>
       </span>
       </h4>
       
@@ -80,7 +80,7 @@
       <span class="symbol"> 
         <span class="name">TheOwnerType</span>
         
-        <span class="result"> = T</span>
+        <span class="result"> = A</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → MixableMappedField</dd></dl></div>
@@ -91,7 +91,7 @@
       <span class="symbol"> 
         <span class="name">ValueType</span>
         
-        <span class="result"> = <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="result"> = String</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → PValueHolder → ValueHolder</dd></dl></div>
@@ -136,24 +136,24 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>final </dd><dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#:=" data-isabs="false">
-      <a id=":=(Box[Int]):Box[Int]"></a>
+      <a id=":=(String):String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">:=</span>
         
-        <span class="params">(<span name="v">v: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>)</span><span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="params">(<span name="v">v: String</span>)</span><span class="result">: String</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#:=" data-isabs="false">
-      <a id=":=[Q](Q)((Q) ⇒ Box[Int]):Box[Int]"></a>
+      <a id=":=[Q](Q)((Q) ⇒ String):String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">:=</span>
         <span class="tparams">[<span name="Q">Q</span>]</span>
-        <span class="params">(<span name="v">v: Q</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (Q) ⇒ <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>)</span><span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="params">(<span name="v">v: Q</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (Q) ⇒ String</span>)</span><span class="result">: String</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
@@ -190,25 +190,25 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>final </dd><dt>Definition Classes</dt><dd>BaseMappedField</dd></dl></div>
-    </li><li visbl="pub" name="net.liftweb.mapper.MappedNullableField#_toForm" data-isabs="false">
-      <a id="_toForm:Box[NodeSeq]"></a>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#_toForm" data-isabs="false">
+      <a id="_toForm:Box[Elem]"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">_toForm</span>
         
-        <span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.xml.NodeSeq" class="extype">NodeSeq</span>]</span>
+        <span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.xml.Elem" class="extype">Elem</span>]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedNullableField → MappedField → BaseMappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → MappedField → BaseMappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#actualField" data-isabs="false">
-      <a id="actualField(T):MappedField[Box[Int], T]"></a>
+      <a id="actualField(A):MappedField[String, A]"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">actualField</span>
         
-        <span class="params">(<span name="actual">actual: T</span>)</span><span class="result">: <span name="net.liftweb.mapper.MappedField" class="extype">MappedField</span>[<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>], T]</span>
+        <span class="params">(<span name="actual">actual: A</span>)</span><span class="result">: <span name="net.liftweb.mapper.MappedField" class="extype">MappedField</span>[String, A]</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
@@ -234,25 +234,25 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
-    </li><li visbl="pub" name="net.liftweb.mapper.MappedField#apply" data-isabs="false">
-      <a id="apply(Box[Int]):T"></a>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#apply" data-isabs="false">
+      <a id="apply(String):A"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">apply</span>
         
-        <span class="params">(<span name="v">v: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>)</span><span class="result">: T</span>
+        <span class="params">(<span name="v">v: String</span>)</span><span class="result">: A</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → HasApplyBoxString → MappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#apply" data-isabs="false">
-      <a id="apply[Q](Q)((Q) ⇒ Box[Int]):T"></a>
+      <a id="apply[Q](Q)((Q) ⇒ String):A"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">apply</span>
         <span class="tparams">[<span name="Q">Q</span>]</span>
-        <span class="params">(<span name="v">v: Q</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (Q) ⇒ <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>)</span><span class="result">: T</span>
+        <span class="params">(<span name="v">v: Q</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (Q) ⇒ String</span>)</span><span class="result">: A</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
@@ -289,7 +289,7 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>BaseMappedField</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#asJsExp" data-isabs="false">
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#asJsExp" data-isabs="false">
       <a id="asJsExp:JsExp"></a>
       <h4 class="signature">
       <span class="kind">def</span>
@@ -299,7 +299,7 @@
         <span class="result">: <span name="net.liftweb.http.js.JsExp" class="extype">JsExp</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → BaseMappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → BaseMappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.BaseMappedField#asJsonField" data-isabs="false">
       <a id="asJsonField:Box[JField]"></a>
       <h4 class="signature">
@@ -311,7 +311,7 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>BaseMappedField</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#asJsonValue" data-isabs="false">
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#asJsonValue" data-isabs="false">
       <a id="asJsonValue:Box[JValue]"></a>
       <h4 class="signature">
       <span class="kind">def</span>
@@ -321,7 +321,7 @@
         <span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="net.liftweb.json.JsonAST.JValue" class="extype">JValue</span>]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → BaseMappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → BaseMappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#asString" data-isabs="false">
       <a id="asString:String"></a>
       <h4 class="signature">
@@ -344,61 +344,72 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Settable</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#buildSetActualValue" data-isabs="false">
-      <a id="buildSetActualValue(Method,AnyRef,String):(T, AnyRef) ⇒ Unit"></a>
+    </li><li visbl="prt" name="net.liftweb.mapper.MappedString#boxStrToValType" data-isabs="false">
+      <a id="boxStrToValType(Box[String]):String"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">boxStrToValType</span>
+        
+        <span class="params">(<span name="in">in: <span name="net.liftweb.common.Box" class="extype">Box</span>[String]</span>)</span><span class="result">: String</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>MappedString → StringValidators</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#buildSetActualValue" data-isabs="false">
+      <a id="buildSetActualValue(Method,AnyRef,String):(A, AnyRef) ⇒ Unit"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">buildSetActualValue</span>
         
-        <span class="params">(<span name="accessor">accessor: <span name="java.lang.reflect.Method" class="extype">Method</span></span>, <span name="data">data: AnyRef</span>, <span name="columnName">columnName: String</span>)</span><span class="result">: (T, AnyRef) ⇒ <span name="scala.Unit" class="extype">Unit</span></span>
+        <span class="params">(<span name="accessor">accessor: <span name="java.lang.reflect.Method" class="extype">Method</span></span>, <span name="inst">inst: AnyRef</span>, <span name="columnName">columnName: String</span>)</span><span class="result">: (A, AnyRef) ⇒ <span name="scala.Unit" class="extype">Unit</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#buildSetBooleanValue" data-isabs="false">
-      <a id="buildSetBooleanValue(Method,String):(T, Boolean, Boolean) ⇒ Unit"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → MappedField</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#buildSetBooleanValue" data-isabs="false">
+      <a id="buildSetBooleanValue(Method,String):(A, Boolean, Boolean) ⇒ Unit"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">buildSetBooleanValue</span>
         
-        <span class="params">(<span name="accessor">accessor: <span name="java.lang.reflect.Method" class="extype">Method</span></span>, <span name="columnName">columnName: String</span>)</span><span class="result">: (T, <span name="scala.Boolean" class="extype">Boolean</span>, <span name="scala.Boolean" class="extype">Boolean</span>) ⇒ <span name="scala.Unit" class="extype">Unit</span></span>
+        <span class="params">(<span name="accessor">accessor: <span name="java.lang.reflect.Method" class="extype">Method</span></span>, <span name="columnName">columnName: String</span>)</span><span class="result">: (A, <span name="scala.Boolean" class="extype">Boolean</span>, <span name="scala.Boolean" class="extype">Boolean</span>) ⇒ <span name="scala.Unit" class="extype">Unit</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#buildSetDateValue" data-isabs="false">
-      <a id="buildSetDateValue(Method,String):(T, Date) ⇒ Unit"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → MappedField</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#buildSetDateValue" data-isabs="false">
+      <a id="buildSetDateValue(Method,String):(A, Date) ⇒ Unit"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">buildSetDateValue</span>
         
-        <span class="params">(<span name="accessor">accessor: <span name="java.lang.reflect.Method" class="extype">Method</span></span>, <span name="columnName">columnName: String</span>)</span><span class="result">: (T, <span name="java.util.Date" class="extype">Date</span>) ⇒ <span name="scala.Unit" class="extype">Unit</span></span>
+        <span class="params">(<span name="accessor">accessor: <span name="java.lang.reflect.Method" class="extype">Method</span></span>, <span name="columnName">columnName: String</span>)</span><span class="result">: (A, <span name="java.util.Date" class="extype">Date</span>) ⇒ <span name="scala.Unit" class="extype">Unit</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#buildSetLongValue" data-isabs="false">
-      <a id="buildSetLongValue(Method,String):(T, Long, Boolean) ⇒ Unit"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → MappedField</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#buildSetLongValue" data-isabs="false">
+      <a id="buildSetLongValue(Method,String):(A, Long, Boolean) ⇒ Unit"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">buildSetLongValue</span>
         
-        <span class="params">(<span name="accessor">accessor: <span name="java.lang.reflect.Method" class="extype">Method</span></span>, <span name="columnName">columnName: String</span>)</span><span class="result">: (T, <span name="scala.Long" class="extype">Long</span>, <span name="scala.Boolean" class="extype">Boolean</span>) ⇒ <span name="scala.Unit" class="extype">Unit</span></span>
+        <span class="params">(<span name="accessor">accessor: <span name="java.lang.reflect.Method" class="extype">Method</span></span>, <span name="columnName">columnName: String</span>)</span><span class="result">: (A, <span name="scala.Long" class="extype">Long</span>, <span name="scala.Boolean" class="extype">Boolean</span>) ⇒ <span name="scala.Unit" class="extype">Unit</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#buildSetStringValue" data-isabs="false">
-      <a id="buildSetStringValue(Method,String):(T, String) ⇒ Unit"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → MappedField</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#buildSetStringValue" data-isabs="false">
+      <a id="buildSetStringValue(Method,String):(A, String) ⇒ Unit"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">buildSetStringValue</span>
         
-        <span class="params">(<span name="accessor">accessor: <span name="java.lang.reflect.Method" class="extype">Method</span></span>, <span name="columnName">columnName: String</span>)</span><span class="result">: (T, String) ⇒ <span name="scala.Unit" class="extype">Unit</span></span>
+        <span class="params">(<span name="accessor">accessor: <span name="java.lang.reflect.Method" class="extype">Method</span></span>, <span name="columnName">columnName: String</span>)</span><span class="result">: (A, String) ⇒ <span name="scala.Unit" class="extype">Unit</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → MappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#calcFieldName" data-isabs="false">
       <a id="calcFieldName:String"></a>
       <h4 class="signature">
@@ -436,16 +447,27 @@
               
         </dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#convertToJDBCFriendly" data-isabs="false">
-      <a id="convertToJDBCFriendly(Box[Int]):AnyRef"></a>
+      <a id="convertToJDBCFriendly(String):AnyRef"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">convertToJDBCFriendly</span>
         
-        <span class="params">(<span name="value">value: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>)</span><span class="result">: AnyRef</span>
+        <span class="params">(<span name="value">value: String</span>)</span><span class="result">: AnyRef</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>final </dd><dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.util.StringValidators#crop" data-isabs="false">
+      <a id="crop(ValueType):ValueType"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">crop</span>
+        
+        <span class="params">(<span name="in">in: ValueType</span>)</span><span class="result">: ValueType</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>StringValidators</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#dbAddedColumn" data-isabs="false">
       <a id="dbAddedColumn:Box[() ⇒ Unit]"></a>
       <h4 class="signature">
@@ -523,17 +545,17 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>BaseMappedField</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#dbFieldClass" data-isabs="false">
-      <a id="dbFieldClass:Class[Box[Int]]"></a>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#dbFieldClass" data-isabs="false">
+      <a id="dbFieldClass:Class[String]"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">dbFieldClass</span>
         
-        <span class="result">: <span name="java.lang.Class" class="extype">Class</span>[<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]]</span>
+        <span class="result">: <span name="java.lang.Class" class="extype">Class</span>[String]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → TypedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → TypedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#dbForeignKey_?" data-isabs="false">
       <a id="dbForeignKey_?:Boolean"></a>
       <h4 class="signature">
@@ -589,7 +611,7 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → BaseMappedField → MixableMappedField</dd></dl></div>
-    </li><li visbl="pub" name="net.liftweb.mapper.MappedNullableField#dbNotNull_?" data-isabs="false">
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedField#dbNotNull_?" data-isabs="false">
       <a id="dbNotNull_?:Boolean"></a>
       <h4 class="signature">
       <span class="kind">def</span>
@@ -599,7 +621,7 @@
         <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>final </dd><dt>Definition Classes</dt><dd>MappedNullableField → MappedField → BaseMappedField → MixableMappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → BaseMappedField → MixableMappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#dbPrimaryKey_?" data-isabs="false">
       <a id="dbPrimaryKey_?:Boolean"></a>
       <h4 class="signature">
@@ -622,17 +644,17 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → SelectableField</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#defaultValue" data-isabs="false">
-      <a id="defaultValue:Box[Int]"></a>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#defaultValue" data-isabs="false">
+      <a id="defaultValue:String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">defaultValue</span>
         
-        <span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="result">: <span name="java.lang.String" class="extype">String</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → TypedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → TypedField</dd></dl></div>
     </li><li visbl="prt" name="net.liftweb.mapper.MappedField#dirty_?" data-isabs="false">
       <a id="dirty_?(Boolean):Unit"></a>
       <h4 class="signature">
@@ -689,17 +711,17 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>ReadableField</dd></dl></div>
     </li><li visbl="prt" name="net.liftweb.mapper.MappedField#doField" data-isabs="false">
-      <a id="doField(T,Method,PartialFunction[MappedField[Box[Int], T], Unit]):Unit"></a>
+      <a id="doField(A,Method,PartialFunction[MappedField[String, A], Unit]):Unit"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">doField</span>
         
-        <span class="params">(<span name="inst">inst: T</span>, <span name="meth">meth: <span name="java.lang.reflect.Method" class="extype">Method</span></span>, <span name="func">func: <span name="scala.PartialFunction" class="extype">PartialFunction</span>[<span name="net.liftweb.mapper.MappedField" class="extype">MappedField</span>[<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>], T], <span name="scala.Unit" class="extype">Unit</span>]</span>)</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+        <span class="params">(<span name="inst">inst: A</span>, <span name="meth">meth: <span name="java.lang.reflect.Method" class="extype">Method</span></span>, <span name="func">func: <span name="scala.PartialFunction" class="extype">PartialFunction</span>[<span name="net.liftweb.mapper.MappedField" class="extype">MappedField</span>[String, A], <span name="scala.Unit" class="extype">Unit</span>]</span>)</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#doneWithSave" data-isabs="false">
+    </li><li visbl="prt" name="net.liftweb.mapper.MappedString#doneWithSave" data-isabs="false">
       <a id="doneWithSave():Unit"></a>
       <h4 class="signature">
       <span class="kind">def</span>
@@ -709,9 +731,7 @@
         <span class="params">()</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Called after the field is saved to the database
-</p><div class="fullcomment"><div class="comment cmt"><p>Called after the field is saved to the database
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → BaseMappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a name="net.liftweb.mapper" class="extype" href="../../../../net/liftweb/mapper/package.html">mapper</a>] </dd><dt>Definition Classes</dt><dd>MappedString → BaseMappedField</dd></dl></div>
     </li><li visbl="pub" name="scala.AnyRef#eq" data-isabs="false">
       <a id="eq(AnyRef):Boolean"></a>
       <h4 class="signature">
@@ -734,7 +754,7 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → Equals → AnyRef → Any</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#fieldCreatorString" data-isabs="false">
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#fieldCreatorString" data-isabs="false">
       <a id="fieldCreatorString(DriverType,String):String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
@@ -744,9 +764,7 @@
         <span class="params">(<span name="dbType">dbType: DriverType</span>, <span name="colName">colName: String</span>)</span><span class="result">: String</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Given the driver type, return the string required to create the column in the database
-</p><div class="fullcomment"><div class="comment cmt"><p>Given the driver type, return the string required to create the column in the database
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField → BaseMappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → MappedField → BaseMappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#fieldCreatorString" data-isabs="false">
       <a id="fieldCreatorString(DriverType):List[String]"></a>
       <h4 class="signature">
@@ -769,17 +787,17 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>SettableField</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#fieldOwner" data-isabs="false">
-      <a id="fieldOwner:T"></a>
+    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedCIDR#fieldOwner" data-isabs="false">
+      <a id="fieldOwner:A"></a>
       <h4 class="signature">
       <span class="kind">val</span>
       <span class="symbol"> 
         <span class="name">fieldOwner</span>
         
-        <span class="result">: T</span>
+        <span class="result">: A</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedCIDR" class="extype" href="">MappedCIDR</a> → MappedString → MappedField</dd></dl></div>
     </li><li visbl="prt" name="scala.AnyRef#finalize" data-isabs="false">
       <a id="finalize():Unit"></a>
       <h4 class="signature">
@@ -817,13 +835,13 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#get" data-isabs="false">
-      <a id="get:Box[Int]"></a>
+      <a id="get:String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">get</span>
         
-        <span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="result">: String</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → ValueHolder</dd></dl></div>
@@ -839,13 +857,13 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>final </dd><dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li visbl="prt" name="net.liftweb.mapper.MappedField#getField" data-isabs="false">
-      <a id="getField(T,Method):MappedField[Box[Int], T]"></a>
+      <a id="getField(A,Method):MappedField[String, A]"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">getField</span>
         
-        <span class="params">(<span name="inst">inst: T</span>, <span name="meth">meth: <span name="java.lang.reflect.Method" class="extype">Method</span></span>)</span><span class="result">: <span name="net.liftweb.mapper.MappedField" class="extype">MappedField</span>[<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>], T]</span>
+        <span class="params">(<span name="inst">inst: A</span>, <span name="meth">meth: <span name="java.lang.reflect.Method" class="extype">Method</span></span>)</span><span class="result">: <span name="net.liftweb.mapper.MappedField" class="extype">MappedField</span>[String, A]</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
@@ -871,50 +889,50 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>SettableField</dd></dl></div>
-    </li><li visbl="prt" name="ag.bett.lift.bhtml.MappedNullableInt#i_is_!" data-isabs="false">
-      <a id="i_is_!:Box[Int]"></a>
+    </li><li visbl="prt" name="net.liftweb.mapper.MappedString#i_is_!" data-isabs="false">
+      <a id="i_is_!:String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">i_is_!</span>
         
-        <span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="result">: String</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField</dd></dl></div>
-    </li><li visbl="prt" name="ag.bett.lift.bhtml.MappedNullableInt#i_obscure_!" data-isabs="false">
-      <a id="i_obscure_!(Box[Int]):Box[Int]"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>MappedString → MappedField</dd></dl></div>
+    </li><li visbl="prt" name="net.liftweb.mapper.MappedString#i_obscure_!" data-isabs="false">
+      <a id="i_obscure_!(String):String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">i_obscure_!</span>
         
-        <span class="params">(<span name="in">in: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>)</span><span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="params">(<span name="in">in: String</span>)</span><span class="result">: String</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>MappedString → MappedField</dd></dl></div>
     </li><li visbl="prt" name="net.liftweb.mapper.MappedField#i_set_!" data-isabs="false">
-      <a id="i_set_!(Box[Int]):Box[Int]"></a>
+      <a id="i_set_!(String):String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">i_set_!</span>
         
-        <span class="params">(<span name="value">value: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>)</span><span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="params">(<span name="value">value: String</span>)</span><span class="result">: String</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected final </dd><dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
-    </li><li visbl="prt" name="ag.bett.lift.bhtml.MappedNullableInt#i_was_!" data-isabs="false">
-      <a id="i_was_!:Box[Int]"></a>
+    </li><li visbl="prt" name="net.liftweb.mapper.MappedString#i_was_!" data-isabs="false">
+      <a id="i_was_!:String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">i_was_!</span>
         
-        <span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="result">: String</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>MappedString → MappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#ignoreField_?" data-isabs="false">
       <a id="ignoreField_?:Boolean"></a>
       <h4 class="signature">
@@ -927,13 +945,13 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#is" data-isabs="false">
-      <a id="is:Box[Int]"></a>
+      <a id="is:String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">is</span>
         
-        <span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="result">: String</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → ValueHolder</dd></dl></div>
@@ -948,7 +966,18 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>final </dd><dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#jdbcFriendly" data-isabs="false">
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#jdbcFriendly" data-isabs="false">
+      <a id="jdbcFriendly(String):String"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">jdbcFriendly</span>
+        
+        <span class="params">(<span name="field">field: String</span>)</span><span class="result">: String</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → MappedField → BaseMappedField</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedField#jdbcFriendly" data-isabs="false">
       <a id="jdbcFriendly:AnyRef"></a>
       <h4 class="signature">
       <span class="kind">def</span>
@@ -958,18 +987,18 @@
         <span class="result">: AnyRef</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField → BaseMappedField</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#jdbcFriendly" data-isabs="false">
-      <a id="jdbcFriendly(String):AnyRef"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → BaseMappedField</dd></dl></div>
+    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedCIDR#maxLen" data-isabs="false">
+      <a id="maxLen:Int"></a>
       <h4 class="signature">
-      <span class="kind">def</span>
+      <span class="kind">val</span>
       <span class="symbol"> 
-        <span class="name">jdbcFriendly</span>
+        <span class="name">maxLen</span>
         
-        <span class="params">(<span name="field">field: String</span>)</span><span class="result">: AnyRef</span>
+        <span class="result">: <span name="scala.Int" class="extype">Int</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField → BaseMappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedCIDR" class="extype" href="">MappedCIDR</a> → MappedString → StringValidators</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#name" data-isabs="false">
       <a id="name:String"></a>
       <h4 class="signature">
@@ -992,6 +1021,17 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>final </dd><dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.util.StringValidators#notNull" data-isabs="false">
+      <a id="notNull(ValueType):ValueType"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">notNull</span>
+        
+        <span class="params">(<span name="in">in: ValueType</span>)</span><span class="result">: ValueType</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>StringValidators</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#notNullAppender" data-isabs="false">
       <a id="notNullAppender():String"></a>
       <h4 class="signature">
@@ -1036,7 +1076,7 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Settable</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#readPermission_?" data-isabs="false">
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#readPermission_?" data-isabs="false">
       <a id="readPermission_?:Boolean"></a>
       <h4 class="signature">
       <span class="kind">def</span>
@@ -1046,29 +1086,40 @@
         <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#real_convertToJDBCFriendly" data-isabs="false">
-      <a id="real_convertToJDBCFriendly(Box[Int]):AnyRef"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → MappedField</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#real_convertToJDBCFriendly" data-isabs="false">
+      <a id="real_convertToJDBCFriendly(String):AnyRef"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">real_convertToJDBCFriendly</span>
         
-        <span class="params">(<span name="value">value: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>)</span><span class="result">: AnyRef</span>
+        <span class="params">(<span name="value">value: String</span>)</span><span class="result">: AnyRef</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField</dd></dl></div>
-    </li><li visbl="prt" name="ag.bett.lift.bhtml.MappedNullableInt#real_i_set_!" data-isabs="false">
-      <a id="real_i_set_!(Box[Int]):Box[Int]"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → MappedField</dd></dl></div>
+    </li><li visbl="prt" name="net.liftweb.mapper.MappedString#real_i_set_!" data-isabs="false">
+      <a id="real_i_set_!(String):String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">real_i_set_!</span>
         
-        <span class="params">(<span name="value">value: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>)</span><span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="params">(<span name="value">value: String</span>)</span><span class="result">: String</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>MappedString → MappedField</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.util.StringValidators#removeRegExChars" data-isabs="false">
+      <a id="removeRegExChars(String)(ValueType):ValueType"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">removeRegExChars</span>
+        
+        <span class="params">(<span name="regEx">regEx: String</span>)</span><span class="params">(<span name="in">in: ValueType</span>)</span><span class="result">: ValueType</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>StringValidators</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.BaseMappedField#renderJs_?" data-isabs="false">
       <a id="renderJs_?:Boolean"></a>
       <h4 class="signature">
@@ -1103,13 +1154,13 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#runFilters" data-isabs="false">
-      <a id="runFilters(Box[Int],List[(Box[Int]) ⇒ Box[Int]]):Box[Int]"></a>
+      <a id="runFilters(String,List[(String) ⇒ String]):String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">runFilters</span>
         
-        <span class="params">(<span name="in">in: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>, <span name="filter">filter: List[(<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]) ⇒ <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]]</span>)</span><span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="params">(<span name="in">in: String</span>, <span name="filter">filter: List[(String) ⇒ String]</span>)</span><span class="result">: String</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
@@ -1125,46 +1176,46 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>final </dd><dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#set" data-isabs="false">
-      <a id="set(Box[Int]):Box[Int]"></a>
+      <a id="set(String):String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">set</span>
         
-        <span class="params">(<span name="value">value: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>)</span><span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="params">(<span name="value">value: String</span>)</span><span class="result">: String</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → Settable</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#setFilter" data-isabs="false">
-      <a id="setFilter:List[(Box[Int]) ⇒ Box[Int]]"></a>
+      <a id="setFilter:List[(String) ⇒ String]"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">setFilter</span>
         
-        <span class="result">: List[(<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]) ⇒ <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]]</span>
+        <span class="result">: List[(String) ⇒ String]</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → SettableField</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#setFromAny" data-isabs="false">
-      <a id="setFromAny(Any):Box[Int]"></a>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#setFromAny" data-isabs="false">
+      <a id="setFromAny(Any):String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">setFromAny</span>
         
-        <span class="params">(<span name="in">in: <span name="scala.Any" class="extype">Any</span></span>)</span><span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="params">(<span name="in">in: <span name="scala.Any" class="extype">Any</span></span>)</span><span class="result">: String</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → MappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#set_?" data-isabs="false">
-      <a id="set_?(Box[Box[Int]]):Box[Box[Int]]"></a>
+      <a id="set_?(Box[String]):Box[String]"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">set_?</span>
         
-        <span class="params">(<span name="value">value: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]]</span>)</span><span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]]</span>
+        <span class="params">(<span name="value">value: <span name="net.liftweb.common.Box" class="extype">Box</span>[String]</span>)</span><span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[String]</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
@@ -1201,7 +1252,7 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>final </dd><dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#targetSQLType" data-isabs="false">
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#targetSQLType" data-isabs="false">
       <a id="targetSQLType:Int"></a>
       <h4 class="signature">
       <span class="kind">def</span>
@@ -1211,9 +1262,7 @@
         <span class="result">: <span name="scala.Int" class="extype">Int</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Get the JDBC SQL Type for this field
-</p><div class="fullcomment"><div class="comment cmt"><p>Get the JDBC SQL Type for this field
-</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField → BaseMappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → MappedField → BaseMappedField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#targetSQLType" data-isabs="false">
       <a id="targetSQLType(String):Int"></a>
       <h4 class="signature">
@@ -1225,17 +1274,17 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → BaseMappedField</dd></dl></div>
-    </li><li visbl="pub" name="net.liftweb.mapper.MappedField#toForm" data-isabs="false">
-      <a id="toForm:Box[NodeSeq]"></a>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#toForm" data-isabs="false">
+      <a id="toForm:Box[Elem]"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">toForm</span>
         
-        <span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.xml.NodeSeq" class="extype">NodeSeq</span>]</span>
+        <span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.xml.Elem" class="extype">Elem</span>]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → SettableField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → MappedField → SettableField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#toFormAppendedAttributes" data-isabs="false">
       <a id="toFormAppendedAttributes:MetaData"></a>
       <h4 class="signature">
@@ -1247,28 +1296,61 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
-    </li><li visbl="pub" name="net.liftweb.mapper.MappedNullableField#toString" data-isabs="false">
+    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedCIDR#toInet" data-isabs="false">
+      <a id="toInet:InetAddress"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">toInet</span>
+        
+        <span class="result">: <span name="java.net.InetAddress" class="extype">InetAddress</span></span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="net.liftweb.util.StringValidators#toLower" data-isabs="false">
+      <a id="toLower(ValueType):ValueType"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">toLower</span>
+        
+        <span class="params">(<span name="in">in: ValueType</span>)</span><span class="result">: ValueType</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>StringValidators</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedField#toString" data-isabs="false">
       <a id="toString():String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">toString</span>
         
-        <span class="params">()</span><span class="result">: <span name="java.lang.String" class="extype">String</span></span>
+        <span class="params">()</span><span class="result">: String</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedNullableField → MappedField → AnyRef → Any</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#toValue" data-isabs="false">
-      <a id="toValue:String"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → AnyRef → Any</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.util.StringValidators#toUpper" data-isabs="false">
+      <a id="toUpper(ValueType):ValueType"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
-        <span class="name">toValue</span>
+        <span class="name">toUpper</span>
         
-        <span class="result">: <span name="java.lang.String" class="extype">String</span></span>
+        <span class="params">(<span name="in">in: ValueType</span>)</span><span class="result">: ValueType</span>
       </span>
       </h4>
-      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>StringValidators</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.util.StringValidators#trim" data-isabs="false">
+      <a id="trim(ValueType):ValueType"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">trim</span>
+        
+        <span class="params">(<span name="in">in: ValueType</span>)</span><span class="result">: ValueType</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>StringValidators</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#uniqueFieldId" data-isabs="false">
       <a id="uniqueFieldId:Box[String]"></a>
       <h4 class="signature">
@@ -1281,13 +1363,13 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → FieldIdentifier</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#update" data-isabs="false">
-      <a id="update[Q](Q)((Q) ⇒ Box[Int]):Unit"></a>
+      <a id="update[Q](Q)((Q) ⇒ String):Unit"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">update</span>
         <span class="tparams">[<span name="Q">Q</span>]</span>
-        <span class="params">(<span name="v">v: Q</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (Q) ⇒ <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>)</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
+        <span class="params">(<span name="v">v: Q</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: (Q) ⇒ String</span>)</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
@@ -1302,6 +1384,50 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>SettableField</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.util.StringValidators#valMaxLen" data-isabs="false">
+      <a id="valMaxLen(Int,⇒ String)(ValueType):List[FieldError]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">valMaxLen</span>
+        
+        <span class="params">(<span name="len">len: <span name="scala.Int" class="extype">Int</span></span>, <span name="msg">msg: ⇒ String</span>)</span><span class="params">(<span name="value">value: ValueType</span>)</span><span class="result">: List[<span name="net.liftweb.util.FieldError" class="extype">FieldError</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>StringValidators</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.util.StringValidators#valMinLen" data-isabs="false">
+      <a id="valMinLen(Int,⇒ String)(ValueType):List[FieldError]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">valMinLen</span>
+        
+        <span class="params">(<span name="len">len: <span name="scala.Int" class="extype">Int</span></span>, <span name="msg">msg: ⇒ String</span>)</span><span class="params">(<span name="value">value: ValueType</span>)</span><span class="result">: List[<span name="net.liftweb.util.FieldError" class="extype">FieldError</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>StringValidators</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.util.StringValidators#valRegex" data-isabs="false">
+      <a id="valRegex(Pattern,⇒ String)(ValueType):List[FieldError]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">valRegex</span>
+        
+        <span class="params">(<span name="pat">pat: <span name="java.util.regex.Pattern" class="extype">Pattern</span></span>, <span name="msg">msg: ⇒ String</span>)</span><span class="params">(<span name="value">value: ValueType</span>)</span><span class="result">: List[<span name="net.liftweb.util.FieldError" class="extype">FieldError</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>StringValidators</dd></dl></div>
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#valUnique" data-isabs="false">
+      <a id="valUnique(⇒ String)(String):List[FieldError]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">valUnique</span>
+        
+        <span class="params">(<span name="msg">msg: ⇒ String</span>)</span><span class="params">(<span name="value">value: String</span>)</span><span class="result">: List[<span name="net.liftweb.util.FieldError" class="extype">FieldError</span>]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#validate" data-isabs="false">
       <a id="validate:List[FieldError]"></a>
       <h4 class="signature">
@@ -1314,16 +1440,27 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → SettableField</dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#validations" data-isabs="false">
-      <a id="validations:List[(Box[Int]) ⇒ List[FieldError]]"></a>
+      <a id="validations:List[(String) ⇒ List[FieldError]]"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">validations</span>
         
-        <span class="result">: List[(<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]) ⇒ List[<span name="net.liftweb.util.FieldError" class="extype">FieldError</span>]]</span>
+        <span class="result">: List[(String) ⇒ List[<span name="net.liftweb.util.FieldError" class="extype">FieldError</span>]]</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField → SettableField</dd></dl></div>
+    </li><li visbl="prt" name="net.liftweb.mapper.MappedString#valueTypeToBoxString" data-isabs="false">
+      <a id="valueTypeToBoxString(String):Box[String]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">valueTypeToBoxString</span>
+        
+        <span class="params">(<span name="in">in: String</span>)</span><span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[String]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>MappedString → StringValidators</dd></dl></div>
     </li><li visbl="pub" name="scala.AnyRef#wait" data-isabs="false">
       <a id="wait():Unit"></a>
       <h4 class="signature">
@@ -1367,17 +1504,17 @@
               
         </dd></dl></div>
     </li><li visbl="pub" name="net.liftweb.mapper.MappedField#was" data-isabs="false">
-      <a id="was:Box[Int]"></a>
+      <a id="was:String"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">was</span>
         
-        <span class="result">: <span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]</span>
+        <span class="result">: String</span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedField</dd></dl></div>
-    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt#writePermission_?" data-isabs="false">
+    </li><li visbl="pub" name="net.liftweb.mapper.MappedString#writePermission_?" data-isabs="false">
       <a id="writePermission_?:Boolean"></a>
       <h4 class="signature">
       <span class="kind">def</span>
@@ -1387,24 +1524,45 @@
         <span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="ag.bett.lift.bhtml.MappedNullableInt" class="extype" href="">MappedNullableInt</a> → MappedField</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>MappedString → MappedField</dd></dl></div>
     </li></ol>
             </div>
 
+        <div class="values members" id="values">
+              <h3>Deprecated Value Members</h3>
+              <ol><li visbl="pub" name="net.liftweb.mapper.HasApplyBoxString#apply" data-isabs="false">
+      <a id="apply(Box[String])(BoxedStringToken):A"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name deprecated">apply</span>
         
+        <span class="params">(<span name="ov">ov: <span name="net.liftweb.common.Box" class="extype">Box</span>[String]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="disambiguateFromApplyBoxedForeign">disambiguateFromApplyBoxedForeign: <span name="net.liftweb.mapper.BoxedStringToken" class="extype">BoxedStringToken</span></span>)</span><span class="result">: A</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>HasApplyBoxString</dd><dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p>Just use apply(x openOr null). Will be removed in 2.5.</p></dd></dl></div>
+    </li></ol>
+            </div>
 
-        <div name="net.liftweb.mapper.MappedNullableField" class="parent">
-              <h3>Inherited from <span name="net.liftweb.mapper.MappedNullableField" class="extype">MappedNullableField</span>[<span name="scala.Int" class="extype">Int</span>, T]</h3>
+        <div name="net.liftweb.mapper.MappedString" class="parent">
+              <h3>Inherited from <span name="net.liftweb.mapper.MappedString" class="extype">MappedString</span>[A]</h3>
+            </div><div name="net.liftweb.mapper.HasApplyBoxString" class="parent">
+              <h3>Inherited from <span name="net.liftweb.mapper.HasApplyBoxString" class="extype">HasApplyBoxString</span>[A]</h3>
+            </div><div name="net.liftweb.util.StringValidators" class="parent">
+              <h3>Inherited from <span name="net.liftweb.util.StringValidators" class="extype">StringValidators</span></h3>
             </div><div name="net.liftweb.mapper.MappedField" class="parent">
-              <h3>Inherited from <span name="net.liftweb.mapper.MappedField" class="extype">MappedField</span>[<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>], T]</h3>
+              <h3>Inherited from <span name="net.liftweb.mapper.MappedField" class="extype">MappedField</span>[String, A]</h3>
             </div><div name="scala.Equals" class="parent">
               <h3>Inherited from <span name="scala.Equals" class="extype">Equals</span></h3>
             </div><div name="net.liftweb.util.PSettableValueHolder" class="parent">
-              <h3>Inherited from <span name="net.liftweb.util.PSettableValueHolder" class="extype">PSettableValueHolder</span>[<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]]</h3>
+              <h3>Inherited from <span name="net.liftweb.util.PSettableValueHolder" class="extype">PSettableValueHolder</span>[String]</h3>
             </div><div name="net.liftweb.util.PValueHolder" class="parent">
-              <h3>Inherited from <span name="net.liftweb.util.PValueHolder" class="extype">PValueHolder</span>[<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]]</h3>
+              <h3>Inherited from <span name="net.liftweb.util.PValueHolder" class="extype">PValueHolder</span>[String]</h3>
             </div><div name="net.liftweb.mapper.BaseOwnedMappedField" class="parent">
-              <h3>Inherited from <span name="net.liftweb.mapper.BaseOwnedMappedField" class="extype">BaseOwnedMappedField</span>[T]</h3>
+              <h3>Inherited from <span name="net.liftweb.mapper.BaseOwnedMappedField" class="extype">BaseOwnedMappedField</span>[A]</h3>
             </div><div name="net.liftweb.mapper.BaseMappedField" class="parent">
               <h3>Inherited from <span name="net.liftweb.mapper.BaseMappedField" class="extype">BaseMappedField</span></h3>
             </div><div name="net.liftweb.mapper.MixableMappedField" class="parent">
@@ -1430,7 +1588,7 @@
             </div><div name="net.liftweb.mapper.SelectableField" class="parent">
               <h3>Inherited from <span name="net.liftweb.mapper.SelectableField" class="extype">SelectableField</span></h3>
             </div><div name="net.liftweb.mapper.TypedField" class="parent">
-              <h3>Inherited from <span name="net.liftweb.mapper.TypedField" class="extype">TypedField</span>[<span name="net.liftweb.common.Box" class="extype">Box</span>[<span name="scala.Int" class="extype">Int</span>]]</h3>
+              <h3>Inherited from <span name="net.liftweb.mapper.TypedField" class="extype">TypedField</span>[String]</h3>
             </div><div name="scala.AnyRef" class="parent">
               <h3>Inherited from AnyRef</h3>
             </div><div name="scala.Any" class="parent">

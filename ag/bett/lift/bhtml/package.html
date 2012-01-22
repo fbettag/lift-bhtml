@@ -28,8 +28,8 @@
       </span>
       </h4>
       
-          <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>Wrapper for Liftweb's ultra-flexible SHtml and Mapper-ORM for easy validation with a
-<a href="http://twitter.github.com/bootstrap/javascript.html#popover">Twitter BootstrapJS Popover</a></p><p>Source-Code: <a href="https://github.com/fbettag/lift-bhtml">https://github.com/fbettag/lift-bhtml</a></p><p>Developed by <a href="http://twitter.com/fbettag">Franz Bettag</a></p><p>Developer's Blog <a href="http://www.uberblo.gs">Developer Blog</a></p><h4>License</h4><pre>
+          <div class="fullcommenttop" id="comment"><div class="comment cmt"><h5>BHtml - Bettag Html Package for Liftweb</h5><p>Wrappers for Liftweb's ultra-flexible SHtml and Mapper-ORM. Mainly this is a collection of Liftweb Helpers i found useful in several projects.</p><p>It adds support for <a href="http://twitter.github.com/bootstrap">Twitter Bootstrap</a> CSS-classes for validation, also makes validation for all
+KeyedMapper-derived Models easy through a <a href="http://twitter.github.com/bootstrap/javascript.html#popover">Twitter BootstrapJS Popover</a>.</p><h5>Source Code</h5><p><a href="https://github.com/fbettag/lift-bhtml">https://github.com/fbettag/lift-bhtml</a></p><h5>Author</h5><p>Developed by <a href="http://twitter.com/fbettag">Franz Bettag</a></p><p>Developer's Blog <a href="http://www.uberblo.gs">Developer Blog</a></p><h4>License</h4><pre>
  Copyright 2012 Franz Bettag &lt;franz@bett.ag&gt;
 
  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -62,7 +62,31 @@
 
         <div class="types members" id="types">
               <h3>Type Members</h3>
-              <ol><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableDecimal" data-isabs="true">
+              <ol><li visbl="pub" name="ag.bett.lift.bhtml.MappedCIDR" data-isabs="true">
+      <a id="MappedCIDR:MappedCIDR[A]"></a>
+      <h4 class="signature">
+      <span class="kind">class</span>
+      <span class="symbol"> 
+        <a href="MappedCIDR.html"><span class="name">MappedCIDR</span></a>
+        <span class="tparams">[<span name="A">A &lt;: Mapper[A]</span>]</span>
+        <span class="result"> extends MappedString[A]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Mapper class for <a href="http://www.postgresql.org/docs/9.1/static/datatype-net-types.html">PostgreSQL CIDR Type</a>
+</p>
+    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedMAC" data-isabs="true">
+      <a id="MappedMAC:MappedMAC[A]"></a>
+      <h4 class="signature">
+      <span class="kind">class</span>
+      <span class="symbol"> 
+        <a href="MappedMAC.html"><span class="name">MappedMAC</span></a>
+        <span class="tparams">[<span name="A">A &lt;: Mapper[A]</span>]</span>
+        <span class="result"> extends MappedString[A]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Mapper class for <a href="http://www.postgresql.org/docs/9.1/static/datatype-net-types.html">PostgreSQL MAC Type</a>
+</p>
+    </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableDecimal" data-isabs="true">
       <a id="MappedNullableDecimal:MappedNullableDecimal[T]"></a>
       <h4 class="signature">
       <span class="kind">class</span>
@@ -72,7 +96,8 @@
         <span class="result"> extends MappedNullableField[BigDecimal, T]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>abstract </dd></dl></div>
+      <p class="comment cmt">Nullable MappedDecimal
+</p>
     </li><li visbl="pub" name="ag.bett.lift.bhtml.MappedNullableInt" data-isabs="true">
       <a id="MappedNullableInt:MappedNullableInt[T]"></a>
       <h4 class="signature">
@@ -83,7 +108,19 @@
         <span class="result"> extends MappedNullableField[Int, T]</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>abstract </dd></dl></div>
+      <p class="comment cmt">Nullable MappedInt
+</p>
+    </li><li visbl="pub" name="ag.bett.lift.bhtml.NginxSendfileResponse" data-isabs="false">
+      <a id="NginxSendfileResponse:NginxSendfileResponse"></a>
+      <h4 class="signature">
+      <span class="kind">case class</span>
+      <span class="symbol"> 
+        <a href="NginxSendfileResponse.html"><span class="name">NginxSendfileResponse</span></a>
+        
+        <span class="params">(<span name="sendfilePrefix">sendfilePrefix: String</span>, <span name="fileName">fileName: String</span>, <span name="mimeType">mimeType: String</span>, <span name="headers">headers: List[(String, String)]</span>)</span><span class="result"> extends LiftResponse with Product with Serializable</span>
+      </span>
+      </h4>
+      <p class="comment cmt"></p>
     </li></ol>
             </div>
         
@@ -101,8 +138,19 @@
         <span class="result"> extends AnyRef</span>
       </span>
       </h4>
-      <p class="comment cmt">Wraps around Liftweb's ultra-flexible SHtml and Mapper-ORM for easy validation with a
-<a href="http://twitter.github.com/bootstrap/javascript.html#popover">Twitter BootstrapJS Popover</a></p>
+      <p class="comment cmt">Adds support for <a href="http://twitter.github.com/bootstrap">Twitter Bootstrap</a> CSS-classes for validation, also makes validation for all
+KeyedMapper-derived Models easy through a <a href="http://twitter.github.com/bootstrap/javascript.html#popover">Twitter BootstrapJS Popover</a>.</p>
+    </li><li visbl="pub" name="ag.bett.lift.bhtml.InetUtils" data-isabs="false">
+      <a id="InetUtils:InetUtils"></a>
+      <h4 class="signature">
+      <span class="kind">object</span>
+      <span class="symbol"> 
+        <a href="InetUtils$.html"><span class="name">InetUtils</span></a>
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      
     </li></ol>
             </div>
 
