@@ -1,10 +1,18 @@
 package ag.bett.lift
 
 /**
- * Wrapper for Liftweb's ultra-flexible SHtml and Mapper-ORM for easy validation with a
- * [[http://twitter.github.com/bootstrap/javascript.html#popover Twitter BootstrapJS Popover]]
+ * ===BHtml - Bettag Html Package for Liftweb===
  *
- * Source-Code: [[https://github.com/fbettag/lift-bhtml]]
+ * Wrappers for Liftweb's ultra-flexible SHtml and Mapper-ORM. Mainly this is a collection of Liftweb Helpers i found useful in several projects.
+ *
+ * It adds support for [[http://twitter.github.com/bootstrap Twitter Bootstrap]] CSS-classes for validation, also makes validation for all
+ * KeyedMapper-derived Models easy through a [[http://twitter.github.com/bootstrap/javascript.html#popover Twitter BootstrapJS Popover]].
+ *
+ * ===Source Code===
+ * [[https://github.com/fbettag/lift-bhtml]]
+ *
+ *
+ * ===Author===
  *
  * Developed by [[http://twitter.com/fbettag Franz Bettag]]
  *

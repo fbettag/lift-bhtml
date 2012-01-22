@@ -33,6 +33,35 @@ import java.math.{MathContext, RoundingMode}
 import scala.xml._
 
 
+/**
+ * Mapper class for [[http://www.postgresql.org/docs/9.1/static/datatype-net-types.html PostgreSQL CIDR Type]]
+ */
+abstract class MappedCIDR[A <: Mapper[A]](override val fieldOwner: A) extends MappedString[A](fieldOwner, 132) {
+
+	override val maxLen = 132
+	//override def fieldCreatorString(dbType: DriverType, colName: String): String = colName+" cidr"
+	//override def dbSelectString = super.dbSelectString + "::cidr"
+
+	def toInet = InetUtils.getAddress(is)
+
+}
+
+
+/**
+ * Mapper class for [[http://www.postgresql.org/docs/9.1/static/datatype-net-types.html PostgreSQL MAC Type]]
+ */
+abstract class MappedMAC[A <: Mapper[A]](override val fieldOwner: A) extends MappedString[A](fieldOwner, 18) {
+
+	override val maxLen = 18
+	//override def fieldCreatorString(dbType: DriverType, colName: String): String = colName+" macaddr"
+	override def dbSelectString = super.dbSelectString + "::varchar"
+
+}
+
+
+/**
+ * Nullable MappedInt
+ */
 abstract class MappedNullableInt[T <: Mapper[T]](val fieldOwner: T) extends MappedNullableField[Int, T] {
 	private var data: Box[Int] = defaultValue
 	private var orgData: Box[Int] = defaultValue
@@ -152,6 +181,9 @@ abstract class MappedNullableInt[T <: Mapper[T]](val fieldOwner: T) extends Mapp
 }
 
 
+/**
+ * Nullable MappedDecimal
+ */
 abstract class MappedNullableDecimal[T <: Mapper[T]](val fieldOwner: T, val context: MathContext, val scale: Int)
 extends MappedNullableField[BigDecimal, T] {
 	private var data: Box[BigDecimal] = defaultValue

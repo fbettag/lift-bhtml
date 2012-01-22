@@ -34,14 +34,12 @@ import scala.xml._
 
 
 /**
- * Wraps around Liftweb's ultra-flexible SHtml and Mapper-ORM for easy validation with a
- * [[http://twitter.github.com/bootstrap/javascript.html#popover Twitter BootstrapJS Popover]]
- *
- * Validation with Popover supported with [[http://twitter.github.com/bootstrap/javascript.html#popover Twitter BootstrapJS]].
+ * Adds support for [[http://twitter.github.com/bootstrap Twitter Bootstrap]] CSS-classes for validation, also makes validation for all
+ * KeyedMapper-derived Models easy through a [[http://twitter.github.com/bootstrap/javascript.html#popover Twitter BootstrapJS Popover]].
  *
  * All selectors are [[http://api.jquery.com/category/selectors/ jQuery Selectors]].
  *
- * The <b>save</b>-parameters make fields autocommit whole records.
+ * The <i>save</i>-parameter makes fields auto-commit/auto-save the record on Event (blur).
  *
  */
 object BHtml {
@@ -324,5 +322,44 @@ object BHtml {
 
 }
 
+
+object InetUtils {
+	/**
+	 * Converts given String to [[java.net.InetAddress]]
+	 *
+	 * @param addr Valid IPv4 or IPv6 Address
+	 */
+	def getAddress(addr: String): java.net.InetAddress = {
+		val subnetStripped = addr.replaceAll("/[0-9]+$", "")
+		java.net.InetAddress.getByAddress({
+			if (addr.matches(".*\\..*"))
+				sun.net.util.IPAddressUtil.textToNumericFormatV4(subnetStripped)
+			else
+				sun.net.util.IPAddressUtil.textToNumericFormatV6(subnetStripped)
+		})
+	}
+
+
+	/**
+	 * Converts given IP Address (as String) to PTR form
+	 *
+	 * @param addr Valid IPv4 or IPv6 Address
+	 */
+	def getPtr(addr: java.net.InetAddress): String = {
+		if (addr.toString().matches(".*\\..*"))
+			addr.toString().split("\\.").reverse.mkString(".") + ".in-addr.arpa"
+		else
+			addr.toString().replaceAll(":|/[0-9]+$", "").split("").reverse.mkString(".") + ".ip6.arpa"
+	}
+
+
+	/**
+	 * Converts given IP Address (as String) to PTR form
+	 *
+	 * @param addr Valid IPv4 or IPv6 Address as String
+	 */
+	def getPtr(addr: String): String = getPtr(getAddress(addr))
+
+}
 
 
