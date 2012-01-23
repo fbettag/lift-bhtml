@@ -314,7 +314,7 @@ object BHtml {
 				if (a.validate.length == 0) saving
 				else Fx.invalid("." + cssId, a.validate) & jsFail
 			} catch { // not a number
-				case _ => Fx.invalidated("." + cssId, S.??("Error"), S.??("must.be.a.number")) & jsFail
+				case _ => Fx.invalidated("." + cssId, S.??("Error"), S.??("must.be.a.number.or.float")) & jsFail
 			}
 
 		SHtml.ajaxText(a.is.toString, update(_), "class" -> css, "pattern" -> "[0-9.,]*")
