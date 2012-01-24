@@ -141,14 +141,24 @@ object BHtml {
 	/**
 	 * Save a Record
 	 */
-	def save[K, T <: KeyedMapper[K, T]](a: T, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): JsCmd = {
-		if (a.validate.length == 0 && a.save) jsSuccess()
-		else jsFail() & a.allFields.map(bf => {
-			val css = ".BF-%s-%s".format(bf.uniqueFieldId.open_!, a.primaryKeyField.is)
-			if (bf.validate.length == 0) Fx.reset(css)
-			else Fx.invalid(css, bf.validate)
+	def save[K, T <: KeyedMapper[K, T]](a: T, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop) = {
+		SHtml.ajaxInvoke(() => {
+			if (a.validate.length == 0 && a.save) jsSuccess()
+			else jsFail() & a.allFields.map(bf => {
+				val css = ".BF-%s-%s".format(bf.uniqueFieldId.open_!, a.primaryKeyField.is)
+				if (bf.validate.length == 0) Fx.reset(css)
+				else Fx.invalid(css, bf.validate)
+			})
 		})
 	}
+
+
+	/**
+	 * Reload the record and discard changes, also reset validations.
+	 */
+	def reset[K, T <: KeyedMapper[K, T]](a: T) =
+		SHtml.ajaxInvoke(() => { a.reload; resetValidation[K, T](a) })
+
 
 	/**
 	 * Reset validations for a Record
@@ -206,6 +216,59 @@ object BHtml {
 			} else Fx.invalid("." + cssId, errors) & jsFail
 		}
 		SHtml.ajaxText(value openOr a.is, update(_), "class" -> css)
+	}
+
+
+	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean): NodeSeq =
+		textarea[K, T](a, Empty, save, Empty)
+
+	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, cssClass: String): NodeSeq =
+		textarea[K, T](a, Empty, save, Full(cssClass))
+
+	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, jsSuccess: JsCmd, jsFail: JsCmd): NodeSeq =
+		textarea[K, T](a, Empty, save, Empty, jsSuccess, jsFail)
+
+	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, cssClass: String, jsSuccess: JsCmd, jsFail: JsCmd): NodeSeq =
+		textarea[K, T](a, Empty, save, Full(cssClass), jsSuccess, jsFail)
+
+	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], value: Box[String] = Empty, save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: JsCmd = Noop, jsFail: JsCmd = Noop): NodeSeq = {
+		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
+		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
+
+		def update(v: String) = {
+			a.set(v)
+			val errors = a.validate
+
+			// validation went ok
+			if (errors.length == 0) Fx.validated("." + cssId) & jsSuccess & {
+				// saving went ok
+				if (!save) Noop	else if (a.fieldOwner.save) Fx.success("." + cssId)	else Fx.failed("." + cssId)
+			} else Fx.invalid("." + cssId, errors) & jsFail
+		}
+		SHtml.ajaxTextarea(value openOr a.is, update(_), "class" -> css)
+	}
+
+
+	/**
+	 * e.g. select[String, StringKeyedClass, Long, LongKeyedClass](..)
+	 *
+	 * @param choices List[(ForeignKeyType, ForeignKeyModel)]
+	 */
+	def select[K, T <: KeyedMapper[K, T], OK, O <: KeyedMapper[OK, O]](a: MappedForeignKey[OK, T, O], choices: List[(OK, String)] = List(), save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: JsCmd = Noop, jsFail: JsCmd = Noop): NodeSeq = {
+		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
+		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
+
+		def update(v: OK) = {
+			a.set(v)
+			val errors = a.validate
+
+			// validation went ok
+			if (errors.length == 0) Fx.validated("." + cssId) & jsSuccess & {
+				// saving went ok
+				if (!save) Noop	else if (a.fieldOwner.save) Fx.success("." + cssId)	else Fx.failed("." + cssId)
+			} else Fx.invalid("." + cssId, errors) & jsFail
+		}
+		SHtml.ajaxSelectObj[OK](choices, Full(a.is), update(_), "class" -> css)
 	}
 
 
