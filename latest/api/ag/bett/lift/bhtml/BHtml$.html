@@ -502,6 +502,17 @@ KeyedMapper-derived Models easy through a <a href="http://twitter.github.com/boo
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>final </dd><dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li visbl="pub" name="ag.bett.lift.bhtml.BHtml#reset" data-isabs="false">
+      <a id="reset[K, T&lt;:KeyedMapper[K, T]](T):(String, JsExp)"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">reset</span>
+        <span class="tparams">[<span name="K">K</span>, <span name="T">T &lt;: <span name="net.liftweb.mapper.KeyedMapper" class="extype">KeyedMapper</span>[K, T]</span>]</span>
+        <span class="params">(<span name="a">a: T</span>)</span><span class="result">: (String, <span name="net.liftweb.http.js.JsExp" class="extype">JsExp</span>)</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Reload the record and discard changes, also reset validations.</p>
     </li><li visbl="pub" name="ag.bett.lift.bhtml.BHtml#resetValidation" data-isabs="false">
       <a id="resetValidation[K, T&lt;:KeyedMapper[K, T]](T):JsCmd"></a>
       <h4 class="signature">
@@ -515,17 +526,30 @@ KeyedMapper-derived Models easy through a <a href="http://twitter.github.com/boo
       <p class="shortcomment cmt">Reset validations for a Record
 </p>
     </li><li visbl="pub" name="ag.bett.lift.bhtml.BHtml#save" data-isabs="false">
-      <a id="save[K, T&lt;:KeyedMapper[K, T]](T,() ⇒ JsCmd,() ⇒ JsCmd):JsCmd"></a>
+      <a id="save[K, T&lt;:KeyedMapper[K, T]](T,() ⇒ JsCmd,() ⇒ JsCmd):(String, JsExp)"></a>
       <h4 class="signature">
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">save</span>
         <span class="tparams">[<span name="K">K</span>, <span name="T">T &lt;: <span name="net.liftweb.mapper.KeyedMapper" class="extype">KeyedMapper</span>[K, T]</span>]</span>
-        <span class="params">(<span name="a">a: T</span>, <span name="jsSuccess">jsSuccess: () ⇒ <span name="net.liftweb.http.js.JsCmd" class="extype">JsCmd</span></span>, <span name="jsFail">jsFail: () ⇒ <span name="net.liftweb.http.js.JsCmd" class="extype">JsCmd</span></span>)</span><span class="result">: <span name="net.liftweb.http.js.JsCmd" class="extype">JsCmd</span></span>
+        <span class="params">(<span name="a">a: T</span>, <span name="jsSuccess">jsSuccess: () ⇒ <span name="net.liftweb.http.js.JsCmd" class="extype">JsCmd</span></span>, <span name="jsFail">jsFail: () ⇒ <span name="net.liftweb.http.js.JsCmd" class="extype">JsCmd</span></span>)</span><span class="result">: (String, <span name="net.liftweb.http.js.JsExp" class="extype">JsExp</span>)</span>
       </span>
       </h4>
       <p class="shortcomment cmt">Save a Record
 </p>
+    </li><li visbl="pub" name="ag.bett.lift.bhtml.BHtml#select" data-isabs="false">
+      <a id="select[K, T&lt;:KeyedMapper[K, T], OK, O&lt;:KeyedMapper[OK, O]](MappedForeignKey[OK, T, O],List[(OK, String)],Boolean,Box[String],JsCmd,JsCmd):NodeSeq"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">select</span>
+        <span class="tparams">[<span name="K">K</span>, <span name="T">T &lt;: <span name="net.liftweb.mapper.KeyedMapper" class="extype">KeyedMapper</span>[K, T]</span>, <span name="OK">OK</span>, <span name="O">O &lt;: <span name="net.liftweb.mapper.KeyedMapper" class="extype">KeyedMapper</span>[OK, O]</span>]</span>
+        <span class="params">(<span name="a">a: <span name="net.liftweb.mapper.MappedForeignKey" class="extype">MappedForeignKey</span>[OK, T, O]</span>, <span name="choices">choices: List[(OK, String)]</span>, <span name="save">save: <span name="scala.Boolean" class="extype">Boolean</span></span>, <span name="cssClass">cssClass: <span name="net.liftweb.common.Box" class="extype">Box</span>[String]</span>, <span name="jsSuccess">jsSuccess: <span name="net.liftweb.http.js.JsCmd" class="extype">JsCmd</span></span>, <span name="jsFail">jsFail: <span name="net.liftweb.http.js.JsCmd" class="extype">JsCmd</span></span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">e.</p><div class="fullcomment"><div class="comment cmt"><p>e.g. select[String, StringKeyedClass, Long, LongKeyedClass](..)
+</p></div><dl class="paramcmts block"><dt class="param">choices</dt><dd class="cmt"><p>List[(ForeignKeyType, ForeignKeyModel)]
+</p></dd></dl></div>
     </li><li visbl="pub" name="ag.bett.lift.bhtml.BHtml#show" data-isabs="false">
       <a id="show(String):JsCmd"></a>
       <h4 class="signature">
@@ -599,6 +623,61 @@ KeyedMapper-derived Models easy through a <a href="http://twitter.github.com/boo
       <span class="kind">def</span>
       <span class="symbol"> 
         <span class="name">text</span>
+        <span class="tparams">[<span name="K">K</span>, <span name="T">T &lt;: <span name="net.liftweb.mapper.KeyedMapper" class="extype">KeyedMapper</span>[K, T]</span>]</span>
+        <span class="params">(<span name="a">a: <span name="net.liftweb.mapper.MappedString" class="extype">MappedString</span>[T]</span>, <span name="save">save: <span name="scala.Boolean" class="extype">Boolean</span></span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="ag.bett.lift.bhtml.BHtml#textarea" data-isabs="false">
+      <a id="textarea[K, T&lt;:KeyedMapper[K, T]](MappedString[T],Box[String],Boolean,Box[String],JsCmd,JsCmd):NodeSeq"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">textarea</span>
+        <span class="tparams">[<span name="K">K</span>, <span name="T">T &lt;: <span name="net.liftweb.mapper.KeyedMapper" class="extype">KeyedMapper</span>[K, T]</span>]</span>
+        <span class="params">(<span name="a">a: <span name="net.liftweb.mapper.MappedString" class="extype">MappedString</span>[T]</span>, <span name="value">value: <span name="net.liftweb.common.Box" class="extype">Box</span>[String]</span>, <span name="save">save: <span name="scala.Boolean" class="extype">Boolean</span></span>, <span name="cssClass">cssClass: <span name="net.liftweb.common.Box" class="extype">Box</span>[String]</span>, <span name="jsSuccess">jsSuccess: <span name="net.liftweb.http.js.JsCmd" class="extype">JsCmd</span></span>, <span name="jsFail">jsFail: <span name="net.liftweb.http.js.JsCmd" class="extype">JsCmd</span></span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="ag.bett.lift.bhtml.BHtml#textarea" data-isabs="false">
+      <a id="textarea[K, T&lt;:KeyedMapper[K, T]](MappedString[T],Boolean,String,JsCmd,JsCmd):NodeSeq"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">textarea</span>
+        <span class="tparams">[<span name="K">K</span>, <span name="T">T &lt;: <span name="net.liftweb.mapper.KeyedMapper" class="extype">KeyedMapper</span>[K, T]</span>]</span>
+        <span class="params">(<span name="a">a: <span name="net.liftweb.mapper.MappedString" class="extype">MappedString</span>[T]</span>, <span name="save">save: <span name="scala.Boolean" class="extype">Boolean</span></span>, <span name="cssClass">cssClass: String</span>, <span name="jsSuccess">jsSuccess: <span name="net.liftweb.http.js.JsCmd" class="extype">JsCmd</span></span>, <span name="jsFail">jsFail: <span name="net.liftweb.http.js.JsCmd" class="extype">JsCmd</span></span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="ag.bett.lift.bhtml.BHtml#textarea" data-isabs="false">
+      <a id="textarea[K, T&lt;:KeyedMapper[K, T]](MappedString[T],Boolean,JsCmd,JsCmd):NodeSeq"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">textarea</span>
+        <span class="tparams">[<span name="K">K</span>, <span name="T">T &lt;: <span name="net.liftweb.mapper.KeyedMapper" class="extype">KeyedMapper</span>[K, T]</span>]</span>
+        <span class="params">(<span name="a">a: <span name="net.liftweb.mapper.MappedString" class="extype">MappedString</span>[T]</span>, <span name="save">save: <span name="scala.Boolean" class="extype">Boolean</span></span>, <span name="jsSuccess">jsSuccess: <span name="net.liftweb.http.js.JsCmd" class="extype">JsCmd</span></span>, <span name="jsFail">jsFail: <span name="net.liftweb.http.js.JsCmd" class="extype">JsCmd</span></span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="ag.bett.lift.bhtml.BHtml#textarea" data-isabs="false">
+      <a id="textarea[K, T&lt;:KeyedMapper[K, T]](MappedString[T],Boolean,String):NodeSeq"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">textarea</span>
+        <span class="tparams">[<span name="K">K</span>, <span name="T">T &lt;: <span name="net.liftweb.mapper.KeyedMapper" class="extype">KeyedMapper</span>[K, T]</span>]</span>
+        <span class="params">(<span name="a">a: <span name="net.liftweb.mapper.MappedString" class="extype">MappedString</span>[T]</span>, <span name="save">save: <span name="scala.Boolean" class="extype">Boolean</span></span>, <span name="cssClass">cssClass: String</span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="ag.bett.lift.bhtml.BHtml#textarea" data-isabs="false">
+      <a id="textarea[K, T&lt;:KeyedMapper[K, T]](MappedString[T],Boolean):NodeSeq"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol"> 
+        <span class="name">textarea</span>
         <span class="tparams">[<span name="K">K</span>, <span name="T">T &lt;: <span name="net.liftweb.mapper.KeyedMapper" class="extype">KeyedMapper</span>[K, T]</span>]</span>
         <span class="params">(<span name="a">a: <span name="net.liftweb.mapper.MappedString" class="extype">MappedString</span>[T]</span>, <span name="save">save: <span name="scala.Boolean" class="extype">Boolean</span></span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
       </span>
