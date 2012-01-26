@@ -132,13 +132,6 @@ object BHtml {
 
 
 
-	/** Makes JsCmd into () =&gt; JsCmd */
-	implicit def jsCmd2JsFutureFunction(js: JsCmd) = { () => js }
-
-	/** Casts a String into [[java.net.InetAddress]] using InetUtils */
-	implicit def string2InetAddress(addr: String): java.net.InetAddress = InetUtils.getAddress(addr)
-
-
 	/**
 	 * Generates an ID unique for this record <b>(restrictions apply)</b>
 	 * <b>If the MappedField's fieldOwner is NOT SAVED, this will have -1. Be sure to only have one unsaved per Model on your page.</b>
