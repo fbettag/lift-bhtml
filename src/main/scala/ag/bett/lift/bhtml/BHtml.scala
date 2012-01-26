@@ -410,9 +410,9 @@ object InetUtils {
 	 */
 	def getPtr(addr: java.net.InetAddress): String = {
 		if (addr.toString().matches(".*\\..*"))
-			addr.toString().split("\\.").reverse.mkString(".") + ".in-addr.arpa"
+			addr.toString().replaceAll("^/|/[0-9]+$", "").split("\\.").reverse.mkString(".") + ".in-addr.arpa"
 		else
-			addr.toString().replaceAll(":|/[0-9]+$", "").split("").reverse.mkString(".") + ".ip6.arpa"
+			addr.toString().replaceAll("^/|:|/[0-9]+$", "").split("").reverse.mkString(".") + ".ip6.arpa"
 	}
 
 
