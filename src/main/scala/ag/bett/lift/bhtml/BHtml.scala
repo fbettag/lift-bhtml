@@ -150,7 +150,7 @@ object BHtml {
 				if (bf.validate.length == 0) Fx.reset(css)
 				else Fx.invalid(css, bf.validate)
 			})
-		})
+		})._2 & JsRaw("return false")
 	}
 
 
@@ -158,7 +158,7 @@ object BHtml {
 	 * Reload the record and discard changes, also reset validations.
 	 */
 	def reset[K, T <: KeyedMapper[K, T]](a: T) =
-		SHtml.ajaxInvoke(() => { a.reload; resetValidation[K, T](a) })
+		SHtml.ajaxInvoke(() => { a.reload; resetValidation[K, T](a) })._2
 
 
 	/**
@@ -326,7 +326,7 @@ object BHtml {
 				case _ => Fx.invalidated("." + cssId, S.??("Error"), S.??("must.be.a.number")) & jsFail()
 			}
 
-		SHtml.ajaxText(a.is.toString, update(_), "class" -> css, "pattern" -> "[0-9]*")
+		SHtml.ajaxText(a.is match { case Full(content) => content.toString case _ => "" }, update(_), "class" -> css, "pattern" -> "[0-9]*")
 	}
 
 
@@ -382,7 +382,7 @@ object BHtml {
 				case _ => Fx.invalidated("." + cssId, S.??("Error"), S.??("must.be.a.number.or.float")) & jsFail()
 			}
 
-		SHtml.ajaxText(a.is.toString, update(_), "class" -> css, "pattern" -> "[0-9.,]*")
+		SHtml.ajaxText(a.is match { case Full(content) => content.toString case _ => "" }, update(_), "class" -> css, "pattern" -> "[0-9.,]*")
 	}
 
 }
