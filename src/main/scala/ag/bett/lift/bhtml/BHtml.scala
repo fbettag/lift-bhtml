@@ -131,6 +131,14 @@ object BHtml {
 	}
 
 
+
+	/** Makes JsCmd into () =&gt; JsCmd */
+	implicit def jsCmd2JsFutureFunction(js: JsCmd) = { () => js }
+
+	/** Casts a String into [[java.net.InetAddress]] using InetUtils */
+	implicit def string2InetAddress(addr: String): java.net.InetAddress = InetUtils.getAddress(addr)
+
+
 	/**
 	 * Generates an ID unique for this record <b>(restrictions apply)</b>
 	 * <b>If the MappedField's fieldOwner is NOT SAVED, this will have -1. Be sure to only have one unsaved per Model on your page.</b>
@@ -167,20 +175,20 @@ object BHtml {
 		a.allFields.map(bf => Fx.reset(".BF-%s-%s".format(bf.uniqueFieldId.open_!, a.primaryKeyField.is)))
 
 
-	def checkbox[K, T <: KeyedMapper[K, T]](a: MappedBoolean[T], save: Boolean, jsSuccess: JsCmd): NodeSeq =
+	def checkbox[K, T <: KeyedMapper[K, T]](a: MappedBoolean[T], save: Boolean, jsSuccess: () => JsCmd): NodeSeq =
 		checkbox[K, T](a, save, Empty, jsSuccess)
 
 	def checkbox[K, T <: KeyedMapper[K, T]](a: MappedBoolean[T], save: Boolean, cssSel: String): NodeSeq =
 		checkbox[K, T](a, save, Full(cssSel))
 
-	def checkbox[K, T <: KeyedMapper[K, T]](a: MappedBoolean[T], save: Boolean = false, cssSel: Box[String] = Empty, jsSuccess: JsCmd = Noop): NodeSeq = {
+	def checkbox[K, T <: KeyedMapper[K, T]](a: MappedBoolean[T], save: Boolean = false, cssSel: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop): NodeSeq = {
 		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 
 		def update(v: Boolean) = {
 			a.set(v)
-			if (!save) Noop
+			if (!save) jsSuccess()
 			else {
-				if (a.fieldOwner.save) Fx.success(cssSel openOr("." + cssId)) & jsSuccess
+				if (a.fieldOwner.save) Fx.success(cssSel openOr("." + cssId)) & jsSuccess()
 				else Fx.failed(cssSel openOr("." + cssId))
 			}
 		}
@@ -195,13 +203,13 @@ object BHtml {
 	def text[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, cssClass: String): NodeSeq =
 		text[K, T](a, Empty, save, Full(cssClass))
 
-	def text[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, jsSuccess: JsCmd, jsFail: JsCmd): NodeSeq =
+	def text[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		text[K, T](a, Empty, save, Empty, jsSuccess, jsFail)
 
-	def text[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, cssClass: String, jsSuccess: JsCmd, jsFail: JsCmd): NodeSeq =
+	def text[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		text[K, T](a, Empty, save, Full(cssClass), jsSuccess, jsFail)
 
-	def text[K, T <: KeyedMapper[K, T]](a: MappedString[T], value: Box[String] = Empty, save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: JsCmd = Noop, jsFail: JsCmd = Noop): NodeSeq = {
+	def text[K, T <: KeyedMapper[K, T]](a: MappedString[T], value: Box[String] = Empty, save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
 		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
@@ -210,10 +218,10 @@ object BHtml {
 			val errors = a.validate
 
 			// validation went ok
-			if (errors.length == 0) Fx.validated("." + cssId) & jsSuccess & {
+			if (errors.length == 0) Fx.validated("." + cssId) & jsSuccess() & {
 				// saving went ok
 				if (!save) Noop	else if (a.fieldOwner.save) Fx.success("." + cssId)	else Fx.failed("." + cssId)
-			} else Fx.invalid("." + cssId, errors) & jsFail
+			} else Fx.invalid("." + cssId, errors) & jsFail()
 		}
 		SHtml.ajaxText(value openOr a.is, update(_), "class" -> css)
 	}
@@ -225,13 +233,14 @@ object BHtml {
 	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, cssClass: String): NodeSeq =
 		textarea[K, T](a, Empty, save, Full(cssClass))
 
-	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, jsSuccess: JsCmd, jsFail: JsCmd): NodeSeq =
+	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		textarea[K, T](a, Empty, save, Empty, jsSuccess, jsFail)
 
-	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, cssClass: String, jsSuccess: JsCmd, jsFail: JsCmd): NodeSeq =
+	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		textarea[K, T](a, Empty, save, Full(cssClass), jsSuccess, jsFail)
 
-	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], value: Box[String] = Empty, save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: JsCmd = Noop, jsFail: JsCmd = Noop): NodeSeq = {
+	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], value: Box[String] = Empty, save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess:
+ () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
 		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
@@ -240,10 +249,10 @@ object BHtml {
 			val errors = a.validate
 
 			// validation went ok
-			if (errors.length == 0) Fx.validated("." + cssId) & jsSuccess & {
+			if (errors.length == 0) Fx.validated("." + cssId) & jsSuccess() & {
 				// saving went ok
 				if (!save) Noop	else if (a.fieldOwner.save) Fx.success("." + cssId)	else Fx.failed("." + cssId)
-			} else Fx.invalid("." + cssId, errors) & jsFail
+			} else Fx.invalid("." + cssId, errors) & jsFail()
 		}
 		SHtml.ajaxTextarea(value openOr a.is, update(_), "class" -> css)
 	}
@@ -254,7 +263,7 @@ object BHtml {
 	 *
 	 * @param choices List[(ForeignKeyType, ForeignKeyModel)]
 	 */
-	def select[K, T <: KeyedMapper[K, T], OK, O <: KeyedMapper[OK, O]](a: MappedForeignKey[OK, T, O], choices: List[(OK, String)] = List(), save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: JsCmd = Noop, jsFail: JsCmd = Noop): NodeSeq = {
+	def select[K, T <: KeyedMapper[K, T], OK, O <: KeyedMapper[OK, O]](a: MappedForeignKey[OK, T, O], choices: List[(OK, String)] = List(), save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
 		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
@@ -263,10 +272,10 @@ object BHtml {
 			val errors = a.validate
 
 			// validation went ok
-			if (errors.length == 0) Fx.validated("." + cssId) & jsSuccess & {
+			if (errors.length == 0) Fx.validated("." + cssId) & jsSuccess() & {
 				// saving went ok
 				if (!save) Noop	else if (a.fieldOwner.save) Fx.success("." + cssId)	else Fx.failed("." + cssId)
-			} else Fx.invalid("." + cssId, errors) & jsFail
+			} else Fx.invalid("." + cssId, errors) & jsFail()
 		}
 		SHtml.ajaxSelectObj[OK](choices, Full(a.is), update(_), "class" -> css)
 	}
@@ -278,22 +287,22 @@ object BHtml {
 	def int[K, T <: KeyedMapper[K, T]](a: MappedInt[T], save: Boolean, cssClass: String): NodeSeq =
 		int[K, T](a, save, Full(cssClass))
 
-	def int[K, T <: KeyedMapper[K, T]](a: MappedInt[T], save: Boolean, cssClass: String, jsSuccess: JsCmd, jsFail: JsCmd): NodeSeq =
+	def int[K, T <: KeyedMapper[K, T]](a: MappedInt[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		int[K, T](a, save, Full(cssClass), jsSuccess, jsFail)
 
-	def int[K, T <: KeyedMapper[K, T]](a: MappedInt[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: JsCmd = Noop, jsFail: JsCmd = Noop): NodeSeq = {
+	def int[K, T <: KeyedMapper[K, T]](a: MappedInt[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
 		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
-		def saving = Fx.validated("." + cssId) & jsSuccess & (if (!save) Noop else if (a.fieldOwner.save) Fx.success("." + cssId) else Fx.failed("." + cssId))
+		def saving = Fx.validated("." + cssId) & jsSuccess() & (if (!save) Noop else if (a.fieldOwner.save) Fx.success("." + cssId) else Fx.failed("." + cssId))
 
 		def update(v: String): JsCmd =
 			try {
 				a(v.toInt)
 				if (a.validate.length == 0) saving
-				else Fx.invalid("." + cssId, a.validate) & jsFail
+				else Fx.invalid("." + cssId, a.validate) & jsFail()
 			} catch { // not a number
-				case _ => Fx.invalidated("." + cssId, S.??("Error"), S.??("must.be.a.number")) & jsFail
+				case _ => Fx.invalidated("." + cssId, S.??("Error"), S.??("must.be.a.number")) & jsFail()
 			}
 
 		SHtml.ajaxText(a.is.toString, update(_), "class" -> css, "pattern" -> "[0-9]+")
@@ -306,22 +315,22 @@ object BHtml {
 	def intOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableInt[T], save: Boolean, cssClass: String): NodeSeq =
 		intOptional[K, T](a, save, Full(cssClass))
 
-	def intOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableInt[T], save: Boolean, cssClass: String, jsSuccess: JsCmd, jsFail: JsCmd): NodeSeq =
+	def intOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableInt[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		intOptional[K, T](a, save, Full(cssClass), jsSuccess, jsFail)
 
-	def intOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableInt[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: JsCmd = Noop, jsFail: JsCmd = Noop): NodeSeq = {
+	def intOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableInt[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = Noop, jsFail: () => JsCmd = Noop): NodeSeq = {
 		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
-		def saving = Fx.validated("." + cssId) & jsSuccess & (if (!save) Noop else if (a.fieldOwner.save) Fx.success("." + cssId) else Fx.failed("." + cssId))
+		def saving = Fx.validated("." + cssId) & jsSuccess() & (if (!save) Noop else if (a.fieldOwner.save) Fx.success("." + cssId) else Fx.failed("." + cssId))
 
 		def update(v: String): JsCmd = if (v.matches("(|0(\\.0+)?)")) { a(Empty); saving } else
 			try {
 				a(Full(v.toInt))
 				if (a.validate.length == 0) saving
-				else Fx.invalid("." + cssId, a.validate) & jsFail
+				else Fx.invalid("." + cssId, a.validate) & jsFail()
 			} catch { // not a number
-				case _ => Fx.invalidated("." + cssId, S.??("Error"), S.??("must.be.a.number")) & jsFail
+				case _ => Fx.invalidated("." + cssId, S.??("Error"), S.??("must.be.a.number")) & jsFail()
 			}
 
 		SHtml.ajaxText(a.is.toString, update(_), "class" -> css, "pattern" -> "[0-9]*")
@@ -334,22 +343,22 @@ object BHtml {
 	def float[K, T <: KeyedMapper[K, T]](a: MappedDecimal[T], save: Boolean, cssClass: String): NodeSeq =
 		float[K, T](a, save, Full(cssClass))
 
-	def float[K, T <: KeyedMapper[K, T]](a: MappedDecimal[T], save: Boolean, cssClass: String, jsSuccess: JsCmd, jsFail: JsCmd): NodeSeq =
+	def float[K, T <: KeyedMapper[K, T]](a: MappedDecimal[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		float[K, T](a, save, Full(cssClass), jsSuccess, jsFail)
 
-	def float[K, T <: KeyedMapper[K, T]](a: MappedDecimal[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: JsCmd = Noop, jsFail: JsCmd = Noop): NodeSeq = {
+	def float[K, T <: KeyedMapper[K, T]](a: MappedDecimal[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
 		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
-		def saving = Fx.validated("." + cssId) & jsSuccess & (if (!save) Noop else if (a.fieldOwner.save) Fx.success("." + cssId) else Fx.failed("." + cssId))
+		def saving = Fx.validated("." + cssId) & jsSuccess() & (if (!save) Noop else if (a.fieldOwner.save) Fx.success("." + cssId) else Fx.failed("." + cssId))
 
 		def update(v: String): JsCmd =
 			try {
 				a(BigDecimal(v.replaceAll(",", ".")))
 				if (a.validate.length == 0) saving
-				else Fx.invalid("." + cssId, a.validate) & jsFail
+				else Fx.invalid("." + cssId, a.validate) & jsFail()
 			} catch { // not a number
-				case _ => Fx.invalidated("." + cssId, S.??("Error"), S.??("must.be.a.number.or.float")) & jsFail
+				case _ => Fx.invalidated("." + cssId, S.??("Error"), S.??("must.be.a.number.or.float")) & jsFail()
 			}
 
 		SHtml.ajaxText(a.is.toString, update(_), "class" -> css, "pattern" -> "[0-9.,]+")
@@ -362,22 +371,22 @@ object BHtml {
 	def floatOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableDecimal[T], save: Boolean, cssClass: String): NodeSeq =
 		floatOptional[K, T](a, save, Full(cssClass))
 
-	def floatOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableDecimal[T], save: Boolean, cssClass: String, jsSuccess: JsCmd, jsFail: JsCmd): NodeSeq =
+	def floatOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableDecimal[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		floatOptional[K, T](a, save, Full(cssClass), jsSuccess, jsFail)
 
-	def floatOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableDecimal[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: JsCmd = Noop, jsFail: JsCmd = Noop): NodeSeq = {
+	def floatOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableDecimal[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = Noop, jsFail: () => JsCmd = Noop): NodeSeq = {
 		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
-		def saving = Fx.validated("." + cssId) & jsSuccess & (if (!save) Noop else if (a.fieldOwner.save) Fx.success("." + cssId) else Fx.failed("." + cssId))
+		def saving = Fx.validated("." + cssId) & jsSuccess() & (if (!save) Noop else if (a.fieldOwner.save) Fx.success("." + cssId) else Fx.failed("." + cssId))
 
 		def update(v: String): JsCmd = if (v.matches("(|0(\\.0+)?)")) { a(Empty); saving } else
 			try {
 				a(Full(BigDecimal(v.replaceAll(",", "."))))
 				if (a.validate.length == 0) saving
-				else Fx.invalid("." + cssId, a.validate) & jsFail
+				else Fx.invalid("." + cssId, a.validate) & jsFail()
 			} catch { // not a number
-				case _ => Fx.invalidated("." + cssId, S.??("Error"), S.??("must.be.a.number.or.float")) & jsFail
+				case _ => Fx.invalidated("." + cssId, S.??("Error"), S.??("must.be.a.number.or.float")) & jsFail()
 			}
 
 		SHtml.ajaxText(a.is.toString, update(_), "class" -> css, "pattern" -> "[0-9.,]*")
