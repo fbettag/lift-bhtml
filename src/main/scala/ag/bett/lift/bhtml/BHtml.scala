@@ -311,7 +311,7 @@ object BHtml {
 	def intOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableInt[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		intOptional[K, T](a, save, Full(cssClass), jsSuccess, jsFail)
 
-	def intOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableInt[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = Noop, jsFail: () => JsCmd = Noop): NodeSeq = {
+	def intOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableInt[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
 		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
@@ -367,7 +367,7 @@ object BHtml {
 	def floatOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableDecimal[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		floatOptional[K, T](a, save, Full(cssClass), jsSuccess, jsFail)
 
-	def floatOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableDecimal[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = Noop, jsFail: () => JsCmd = Noop): NodeSeq = {
+	def floatOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableDecimal[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
 		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 

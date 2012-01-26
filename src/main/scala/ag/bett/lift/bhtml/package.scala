@@ -38,9 +38,14 @@ package ag.bett.lift
  */
 package object bhtml {
 
-	import net.liftweb.http.js.JsCmd
 	/** Makes JsCmd into () =&gt; JsCmd */
-	implicit def jsCmd2JsFutureFunction(js: JsCmd) = { () => js }
+	implicit def jsCmd2JsFutureFunction(js: net.liftweb.http.js.JsCmd) = { () => js }
+
+	/** Makes JsRaw into () =&gt; JsCmd */
+	implicit def jsCmd2JsFutureFunction(js: net.liftweb.http.js.JE.JsRaw) = { () => js.cmd }
+
+	/** Makes () =&gt; JsRaw into () =&gt; JsCmd */
+	implicit def jsCmd2JsFutureFunction(js: () => net.liftweb.http.js.JE.JsRaw) = { () => js().cmd }
 
 	/** Casts a String into [[java.net.InetAddress]] using InetUtils */
 	implicit def string2InetAddress(addr: String): java.net.InetAddress = InetUtils.getAddress(addr)
