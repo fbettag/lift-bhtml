@@ -182,6 +182,145 @@ abstract class MappedNullableInt[T <: Mapper[T]](val fieldOwner: T) extends Mapp
 
 
 /**
+ * Nullable MappedDouble
+ */
+abstract class MappedNullableDouble[T <: Mapper[T]](val fieldOwner: T) extends MappedNullableField[Double, T] {
+	private var data: Box[Double] = defaultValue
+	private var orgData: Box[Double] = defaultValue
+
+	def defaultValue: Box[Double] = Empty
+
+	def dbFieldClass = classOf[Box[Double]]
+
+	/**
+	 * Get the JDBC SQL Type for this field
+	 */
+	def targetSQLType = Types.DOUBLE
+
+	protected def i_is_! = data
+
+	protected def i_was_! = orgData
+
+	def toDouble(in: Any): Double = {
+		in match {
+			case null => 0.0
+			case i: Int => i
+			case n: Long => n
+			case n : Number => n.doubleValue
+			case (n: Number) :: _ => n.doubleValue
+			case Full(n) => toDouble(n) // fixes issue 185
+			case x: EmptyBox => 0.0
+			case Some(n) => toDouble(n)
+			case None => 0.0
+			case s: String => s.toDouble
+			case x :: xs => toDouble(x)
+			case o => toDouble(o.toString)
+		}
+	}
+
+	/**
+	 * Called after the field is saved to the database
+	 */
+	override def doneWithSave() {
+		orgData = data
+	}
+
+	protected def real_i_set_!(value: Box[Double]): Box[Double] = {
+		if (value != data) {
+			data = value
+			dirty_?(true)
+		}
+		data
+	}
+
+	def asJsExp: JsExp = is.map(v => JE.Num(v)) openOr JE.JsNull
+
+	def asJsonValue: Box[JsonAST.JValue] =
+		Full(is.map(v => JsonAST.JDouble(v)) openOr JsonAST.JNull)
+
+	override def readPermission_? = true
+
+	override def writePermission_? = true
+
+	def real_convertToJDBCFriendly(value: Box[Double]): Object = value match {
+		case Full(value2) => new java.lang.Double(value2)
+		case _ => null
+	}
+
+	// def asJsExp = JE.Num(is)
+
+	def jdbcFriendly(field: String) = real_convertToJDBCFriendly(i_is_!)
+
+	override def jdbcFriendly = real_convertToJDBCFriendly(i_is_!)
+
+	override def setFromAny(in: Any): Box[Double] = {
+		in match {
+			case n: Double => this.set(Full(n))
+			case JsonAST.JNothing | JsonAST.JNull => this.set(Empty)
+			case JsonAST.JDouble(n) => this.set(Full(n.doubleValue))
+			case (n: Number) :: _ => this.set(Full(n.doubleValue))
+			case Some(n: Number) => this.set(Full(n.doubleValue))
+			case Full(n: Number) => this.set(Full(n.doubleValue))
+			case Empty | Failure(_, _, _) => this.set(Empty)
+			case None => this.set(Empty)
+			case (s: String) :: _ => this.set(try {
+				Full(s.toDouble)
+			} catch {
+				case _ => Empty
+			})
+			case s :: _ => this.setFromAny(s)
+			case null => this.set(Empty)
+			case s: String => this.set(try {
+				Full(s.toDouble)
+			} catch {
+				case _ => Empty
+			})
+			case o => this.set(Full(toDouble(o)))
+		}
+	}
+
+	protected def i_obscure_!(in: Box[Double]) = defaultValue
+
+	private def st(in: Box[Double]) {
+		data = in
+		orgData = in
+	}
+
+	def toValue = this.is match {
+		case Full(a: Double) => a.toString
+		case _ => ""
+	}
+
+	def buildSetActualValue(accessor: Method, data: AnyRef, columnName: String): (T, AnyRef) => Unit =
+		(inst, v) => doField(inst, accessor, {
+			case f: MappedNullableDouble[T] => f.st(Full(toDouble(v)))
+		})
+
+	def buildSetLongValue(accessor: Method, columnName: String): (T, Long, Boolean) => Unit =
+		(inst, v, isNull) => doField(inst, accessor, {
+			case f: MappedNullableDouble[T] => f.st(if (isNull) Empty else Full(v.toDouble))
+		})
+
+	def buildSetStringValue(accessor: Method, columnName: String): (T, String) => Unit =
+		(inst, v) => doField(inst, accessor, {
+			case f: MappedNullableDouble[T] => f.st(Full(toDouble(v)))
+		})
+
+	def buildSetDateValue(accessor: Method, columnName: String): (T, Date) => Unit =
+		(inst, v) => doField(inst, accessor, {
+			case f: MappedNullableDouble[T] => f.st(if (v == null) Empty else Full(v.getTime.toDouble))
+		})
+
+	def buildSetBooleanValue(accessor: Method, columnName: String): (T, Boolean, Boolean) => Unit = null
+
+	/**
+	 * Given the driver type, return the string required to create the column in the database
+	 */
+	def fieldCreatorString(dbType: DriverType, colName: String): String = colName + " " + dbType.longColumnType + notNullAppender()
+}
+
+
+/**
  * Nullable MappedDecimal
  */
 abstract class MappedNullableDecimal[T <: Mapper[T]](val fieldOwner: T, val context: MathContext, val scale: Int)
