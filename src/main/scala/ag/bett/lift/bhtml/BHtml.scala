@@ -157,8 +157,8 @@ object BHtml {
 	/**
 	 * Reload the record and discard changes, also reset validations.
 	 */
-	def reset[K, T <: KeyedMapper[K, T]](a: T) =
-		SHtml.ajaxInvoke(() => { a.reload; resetValidation[K, T](a) })._2
+	def reset[K, T <: KeyedMapper[K, T]](a: T, after: () => JsCmd = () => Noop) =
+		SHtml.ajaxInvoke(() => { a.reload; resetValidation[K, T](a) & after() })._2
 
 
 	/**
