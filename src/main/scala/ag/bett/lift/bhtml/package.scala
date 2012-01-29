@@ -38,6 +38,9 @@ package ag.bett.lift
  */
 package object bhtml {
 
+	/** Makes a String into Full(String) */
+	implicit def string2FullString(a: String) = net.liftweb.common.Full(a)
+
 	/** Makes JsCmd into () =&gt; JsCmd */
 	implicit def jsCmd2JsFutureFunction(js: net.liftweb.http.js.JsCmd) = { () => js }
 

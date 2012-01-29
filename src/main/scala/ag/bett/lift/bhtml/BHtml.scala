@@ -174,8 +174,8 @@ object BHtml {
 	def checkbox[K, T <: KeyedMapper[K, T]](a: MappedBoolean[T], save: Boolean, cssSel: String): NodeSeq =
 		checkbox[K, T](a, save, Full(cssSel))
 
-	def checkbox[K, T <: KeyedMapper[K, T]](a: MappedBoolean[T], save: Boolean = false, cssSel: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop): NodeSeq = {
-		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
+	def checkbox[K, T <: KeyedMapper[K, T]](a: MappedBoolean[T], save: Boolean = false, cssSel: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, customCssId: Box[String] = Empty): NodeSeq = {
+		val cssId = customCssId openOr getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 
 		def update(v: Boolean) = {
 			a.set(v)
@@ -202,8 +202,8 @@ object BHtml {
 	def text[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		text[K, T](a, Empty, save, Full(cssClass), jsSuccess, jsFail)
 
-	def text[K, T <: KeyedMapper[K, T]](a: MappedString[T], value: Box[String] = Empty, save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
-		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
+	def text[K, T <: KeyedMapper[K, T]](a: MappedString[T], value: Box[String] = Empty, save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop, customCssId: Box[String] = Empty): NodeSeq = {
+		val cssId = customCssId openOr getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
 		def update(v: String) = {
@@ -232,9 +232,8 @@ object BHtml {
 	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		textarea[K, T](a, Empty, save, Full(cssClass), jsSuccess, jsFail)
 
-	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], value: Box[String] = Empty, save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess:
- () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
-		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
+	def textarea[K, T <: KeyedMapper[K, T]](a: MappedString[T], value: Box[String] = Empty, save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop, customCssId: Box[String] = Empty): NodeSeq = {
+		val cssId = customCssId openOr getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
 		def update(v: String) = {
@@ -256,8 +255,8 @@ object BHtml {
 	 *
 	 * @param choices List[(ForeignKeyType, ForeignKeyModel)]
 	 */
-	def select[K, T <: KeyedMapper[K, T], OK, O <: KeyedMapper[OK, O]](a: MappedForeignKey[OK, T, O], choices: List[(OK, String)] = List(), save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
-		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
+	def select[K, T <: KeyedMapper[K, T], OK, O <: KeyedMapper[OK, O]](a: MappedForeignKey[OK, T, O], choices: List[(OK, String)] = List(), save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop, customCssId: Box[String] = Empty): NodeSeq = {
+		val cssId = customCssId openOr getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
 		def update(v: OK) = {
@@ -283,8 +282,8 @@ object BHtml {
 	def int[K, T <: KeyedMapper[K, T]](a: MappedInt[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		int[K, T](a, save, Full(cssClass), jsSuccess, jsFail)
 
-	def int[K, T <: KeyedMapper[K, T]](a: MappedInt[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
-		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
+	def int[K, T <: KeyedMapper[K, T]](a: MappedInt[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop, customCssId: Box[String] = Empty): NodeSeq = {
+		val cssId = customCssId openOr getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
 		def saving = Fx.validated("." + cssId) & jsSuccess() & (if (!save) Noop else if (a.fieldOwner.save) Fx.success("." + cssId) else Fx.failed("." + cssId))
@@ -311,8 +310,8 @@ object BHtml {
 	def intOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableInt[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		intOptional[K, T](a, save, Full(cssClass), jsSuccess, jsFail)
 
-	def intOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableInt[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
-		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
+	def intOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableInt[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop, customCssId: Box[String] = Empty): NodeSeq = {
+		val cssId = customCssId openOr getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
 		def saving = Fx.validated("." + cssId) & jsSuccess() & (if (!save) Noop else if (a.fieldOwner.save) Fx.success("." + cssId) else Fx.failed("." + cssId))
@@ -339,8 +338,8 @@ object BHtml {
 	def float[K, T <: KeyedMapper[K, T]](a: MappedDecimal[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		float[K, T](a, save, Full(cssClass), jsSuccess, jsFail)
 
-	def float[K, T <: KeyedMapper[K, T]](a: MappedDecimal[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
-		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
+	def float[K, T <: KeyedMapper[K, T]](a: MappedDecimal[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop, customCssId: Box[String] = Empty): NodeSeq = {
+		val cssId = customCssId openOr getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
 		def saving = Fx.validated("." + cssId) & jsSuccess() & (if (!save) Noop else if (a.fieldOwner.save) Fx.success("." + cssId) else Fx.failed("." + cssId))
@@ -367,8 +366,8 @@ object BHtml {
 	def floatOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableDecimal[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		floatOptional[K, T](a, save, Full(cssClass), jsSuccess, jsFail)
 
-	def floatOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableDecimal[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
-		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
+	def floatOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableDecimal[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop, customCssId: Box[String] = Empty): NodeSeq = {
+		val cssId = customCssId openOr getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
 		def saving = Fx.validated("." + cssId) & jsSuccess() & (if (!save) Noop else if (a.fieldOwner.save) Fx.success("." + cssId) else Fx.failed("." + cssId))
@@ -395,8 +394,8 @@ object BHtml {
 	def double[K, T <: KeyedMapper[K, T]](a: MappedDouble[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		double[K, T](a, save, Full(cssClass), jsSuccess, jsFail)
 
-	def double[K, T <: KeyedMapper[K, T]](a: MappedDouble[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
-		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
+	def double[K, T <: KeyedMapper[K, T]](a: MappedDouble[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop, customCssId: Box[String] = Empty): NodeSeq = {
+		val cssId = customCssId openOr getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
 		def saving = Fx.validated("." + cssId) & jsSuccess() & (if (!save) Noop else if (a.fieldOwner.save) Fx.success("." + cssId) else Fx.failed("." + cssId))
@@ -423,8 +422,8 @@ object BHtml {
 	def doubleOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableDouble[T], save: Boolean, cssClass: String, jsSuccess: () => JsCmd, jsFail: () => JsCmd): NodeSeq =
 		doubleOptional[K, T](a, save, Full(cssClass), jsSuccess, jsFail)
 
-	def doubleOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableDouble[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop): NodeSeq = {
-		val cssId = getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
+	def doubleOptional[K, T <: KeyedMapper[K, T]](a: MappedNullableDouble[T], save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop, customCssId: Box[String] = Empty): NodeSeq = {
+		val cssId = customCssId openOr getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
 		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
 
 		def saving = Fx.validated("." + cssId) & jsSuccess() & (if (!save) Noop else if (a.fieldOwner.save) Fx.success("." + cssId) else Fx.failed("." + cssId))
