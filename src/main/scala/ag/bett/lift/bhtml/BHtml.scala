@@ -273,6 +273,44 @@ object BHtml {
 	}
 
 
+	def enum[K, T <: KeyedMapper[K, T], E <: Enumeration](a: MappedEnum[T, E], choices: E, save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop, customCssId: Box[String] = Empty): NodeSeq = {
+		val cssId = customCssId openOr getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
+		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
+
+		def update(v: Int) = {
+			a.set(choices(v))
+			val errors = a.validate
+
+			// validation went ok
+			if (errors.length == 0) Fx.validated("." + cssId) & jsSuccess() & {
+				// saving went ok
+				if (!save) Noop	else if (a.fieldOwner.save) Fx.success("." + cssId)	else Fx.failed("." + cssId)
+			} else Fx.invalid("." + cssId, errors) & jsFail()
+		}
+
+		SHtml.ajaxSelectObj[Int](choices.values.map(c => (c.id, c.toString())).toSeq, Full(a.is.id), update(_), "class" -> css)
+	}
+
+
+	def enumList[K, T <: KeyedMapper[K, T], E <: Enumeration](a: MappedEnumList[T, E], choices: E, save: Boolean = false, cssClass: Box[String] = Empty, jsSuccess: () => JsCmd = () => Noop, jsFail: () => JsCmd = () => Noop, customCssId: Box[String] = Empty): NodeSeq = {
+		val cssId = customCssId openOr getCssId[K, T](a.asInstanceOf[MappedField[K, T]])
+		val css = cssId + " " + (cssClass match { case Full(s) => " " + s case _ => "" })
+
+		def update(v: choices.Value, o: Boolean) = {
+			if (o) a.set(a.is.toList ++ List(v))
+			else a.set(a.is.toList filterNot (List(v) contains))
+			Noop
+		}
+		implicit def isIn(v: choices.Value): Boolean = a.is.contains(v)
+
+		Group(choices.values.flatMap(choice =>
+			<div class="controls">
+				<label class="checkbox">{SHtml.ajaxCheckbox(choice, update(choice, _), "class" -> (cssId+choice.toString))} {choice.toString()}</label>
+			</div>.toSeq
+		).toSeq)
+	}
+
+
 	def int[K, T <: KeyedMapper[K, T]](a: MappedInt[T], cssClass: String): NodeSeq =
 		int[K, T](a, false, Full(cssClass))
 
