@@ -124,10 +124,15 @@ object BHtml {
 		/**
 		 * Generate a [[http://twitter.github.com/bootstrap/javascript.html#popover JavaScript Popover]]
 		 */
-		def popover(sel: String, title: String, body: NodeSeq): JsCmd =
-			JsRaw("""$('%s').attr('title', "%s").attr('data-content', "%s").popover({ offset: 10, html: true }).popover('show').click(function(e) { e.preventDefault() })"""
-				.format(sel, title.replaceAll("\"", "\\\""), body.toString.replaceAll("\"", "\\\""))).cmd
-
+		def popover(sel: String, title: String, body: NodeSeq, show: Boolean = true, placement: String = "right"): JsCmd = {
+			JsRaw("""$('%s').attr('title', "%s").attr('data-content', "%s").popover({ offset: 10, html: true, placement: '%s' })%s.click(function(e) { e.preventDefault() })""".format(
+				sel,
+				title.replaceAll("\"", "\\\""),
+				body.toString.replaceAll("\"", "\\\""),
+				placement,
+				{ if (show) ".popover('show')" else "" }
+			)).cmd
+		}
 	}
 
 
